@@ -5,32 +5,42 @@
 int roll_die();
 int number_of_player_asker();
 int area_creator(int area[]);
-int player_move(int *player, int area[],int num_die);
+int player_move(int *player, int area[],int num_die, int number_of_player, int *turn);
+int *turn_of_who(int *player,int *player2,int *player3,int *player4,int *turn,int turn_compteur,int number_of_player);
 
 int main (){
-    // Initialiser le générateur de nombres aléatoires avec l'heure actuelle comme graine
-    srand(time(NULL));
-    
-    //int number_of_player = number_of_player_asker();
-    
+    int player = 0, player2 = 0, player3 = 0, player4 = 0;
+    int win = 0, die_num = 0;
+    int turn = -1;
+    int *who;
+    int turn_compteur = 0;
     int area[100] = {0};
+    int number_of_player = number_of_player_asker();
+    
+    srand((unsigned int)time(NULL));
+    //srand(time(NULL)); // Initialiser le générateur de nombres aléatoires avec l'heure actuelle comme graine
     area_creator(area);
     
-    int player = 89;
+    while (win != 99){
+        turn_compteur ++;
+        who = turn_of_who(&player, &player2, &player3, &player4, &turn, turn_compteur, number_of_player);
+        die_num = roll_die();
+        win = player_move(who,area,die_num, number_of_player, &turn);
+    }
     
-    int die_num = 17;// roll_die();
-    player_move(&player,area,die_num);
+    printf("\nLa partie a dure %d tours",turn_compteur);
     return 0;
 }
 
-
 int roll_die(){
+    //Simule un lancer de de (1 à 6)
     int num = (rand() % 6) + 1;
-    printf("\nDie is %d\n",num);
+    printf("\nLe de est tombe sur %d\n",num);
     return num;
 }
 
 int number_of_player_asker(){
+    //Demande à l'utilisateur combien de joueur il y a
     int number_of_player = 1;
     do {
         printf("\nCombien de joueurs vous etes ?\n1\n2\n3\n4\t");
@@ -46,6 +56,7 @@ int number_of_player_asker(){
 }
 
 int area_creator(int area[]){
+    //Cree le terrin (les serpents et les echelles) 
     //debut = 0 et fin = 99
     
     // Ladders
@@ -72,15 +83,10 @@ int area_creator(int area[]){
     area[96] = -20; //76
     area[98] = -5;  //93
     
-    /*
-    for (int i=0;i<100;i++)
-        printf("\n%d",area[i]);
-    */
-    
     return 0;
 }
 
-int player_move(int *player, int area[],int num_die){
+int player_move(int *player, int area[],int num_die,int number_of_player, int *turn){
     //On ajoute à chaque affichage +1 pour que le debut soit 1 et la fin 100
     
     int origin = *player; //on sauvegarde la position de debut
@@ -89,20 +95,70 @@ int player_move(int *player, int area[],int num_die){
     //On verifi si le joueur à gagné
     if (*player > 99){
         *player = 99;
-        printf("\nVous montez de la case %d a la case %d\n",origin+1,*player+1);
-        printf("Bravo ! Vous gagez la pertie !!");
+        if(number_of_player == 1 && *turn == 1){
+            printf("\nL'IA monte de la case %d a la case %d\n",origin+1,*player+1);
+            printf("Oh zut ! L'IA a gagne ! Dommage pour vous");
+        }
+        else{
+            printf("\nVous montez de la case %d a la case %d\n",origin+1,*player+1);
+            printf("Bravo ! Vous gagez la pertie !!");
+        }
         return 99; //Confirmation de fin de partie
     }
     
-    printf("\nVous montez de la case %d a la case %d\n",origin+1,*player+1);
+    if (number_of_player == 1 && *turn == 1){
+            printf("\nL'IA monte de la case %d a la case %d\n",origin+1,*player+1);
+        }
+        else{
+            printf("\nVous montez de la case %d a la case %d\n",origin+1,*player+1);
+        }
+    
     //On regard si le joueur est tomber sur une echelle ou un serpent
     int index = *player;
     *player += area[*player];
     if (area[index] < 0){
-    printf("\nOh zut, un serpent vous a fait tomber !\nVous etes tombe a la case %d\n",*player+1);
+        if (number_of_player == 1 && *turn == 1)
+            printf("\nOh zut, un serpent a fait tomber l'IA !\nL'IA tombe a la case %d\n",*player+1);
+        else
+            printf("\nOh zut, un serpent vous a fait tomber !\nVous etes tombe a la case %d\n",*player+1);
     }
     else if (area[index] > 0){
-    printf("\nOh quelle chance ! Vous avez trouve une echelle !\nVous montez a la case %d\n",*player+1);
+        if (number_of_player == 1 && *turn == 1)
+            printf("\nOh quelle chance ! L'IA a trouve une echelle !\nL'IA monte a la case %d\n",*player+1);
+            
+        else
+            printf("\nOh quelle chance ! Vous avez trouve une echelle !\nVous montez a la case %d\n",*player+1);
+    }
+    
+    return 0;
+}
+
+int *turn_of_who(int *player,int *player2,int *player3,int *player4,int *turn,int turn_compteur,int number_of_player){
+    // Calcul a qui est le tour
+    // Si le joueur est seul il joue contre l'ordi
+    if (number_of_player == 1)
+        *turn = turn_compteur % 2;
+    else
+        *turn = turn_compteur % number_of_player;
+    
+    if (*turn == 0){
+        printf("\nC'est le tour du Joueur 1\n");
+        return player;
+    }
+    else if (*turn == 1){
+        if (number_of_player == 1)
+            printf("\nC'est le tour de l'IA\n");
+        else
+            printf("\nC'est le tour du joueur 2\n");
+        return player2;
+    }
+    else if (*turn == 2){
+        printf("\nC'est le tour du joueur 3\n");
+        return player3;
+    }
+    else if (*turn == 3){
+        printf("\nC'est le tour du joueur 4\n");
+        return player4;
     }
     
     return 0;
