@@ -5,3 +5,4 @@
 
 ### Journal
 - ***30-12*** : J'ai crée la version text du jeu. On peut joueur jusqu'à 4 joueur ou seul contre l'ordi.
+- ***08-01*** : J'ai un 2e fichier qui crée une fenêtre vide pendant une second"

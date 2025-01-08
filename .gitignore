@@ -1,4 +1,11 @@
+.history
 *.exe
 build/
 music/
 image/
+.vscode/
+
+
+lib/
+include/
+bin/

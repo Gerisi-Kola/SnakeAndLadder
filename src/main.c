@@ -1,6 +1,8 @@
+//gcc -Wall -Wextra -I"D:_lib/include" .\src\Window_SDL.c -o bin/prog -I include -L lib -lmingw32 -lSDL2main -lSDL2
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "window_SDL.h"
 
 int roll_die();
 int number_of_player_asker();
@@ -9,6 +11,8 @@ int player_move(int *player, int area[],int num_die, int number_of_player, int *
 int *turn_of_who(int *player,int *player2,int *player3,int *player4,int *turn,int turn_compteur,int number_of_player);
 
 int main (){
+    window_fonc();
+    
     int player = 0, player2 = 0, player3 = 0, player4 = 0;
     int win = 0, die_num = 0;
     int turn = -1;
