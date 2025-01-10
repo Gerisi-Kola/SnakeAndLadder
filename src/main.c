@@ -1,4 +1,4 @@
-//gcc -Wall -Wextra -I"D:_lib/include" .\src\Window_SDL.c -o bin/prog -I include -L lib -lmingw32 -lSDL2main -lSDL2
+//gcc -Wall -Wextra -I"D:_lib/include" .\src\Window_SDL.c -o ./bin/prog -I include -L lib -lmingw32 -lSDL2main -lSDL2
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -10,8 +10,9 @@ int area_creator(int area[]);
 int player_move(int *player, int area[],int num_die, int number_of_player, int *turn);
 int *turn_of_who(int *player,int *player2,int *player3,int *player4,int *turn,int turn_compteur,int number_of_player);
 
-int main (){
-    window_fonc();
+int main (int argc, char *argv[]){
+    (void)argc; // Indique explicitement que tu n'utilises pas 'argc'
+    (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
     
     int player = 0, player2 = 0, player3 = 0, player4 = 0;
     int win = 0, die_num = 0;
@@ -24,8 +25,10 @@ int main (){
     srand((unsigned int)time(NULL));
     //srand(time(NULL)); // Initialiser le générateur de nombres aléatoires avec l'heure actuelle comme graine
     area_creator(area);
-    
+    create_window();
     while (win != 99){
+        
+        
         turn_compteur ++;
         who = turn_of_who(&player, &player2, &player3, &player4, &turn, turn_compteur, number_of_player);
         die_num = roll_die();
