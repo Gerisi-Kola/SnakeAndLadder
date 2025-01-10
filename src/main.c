@@ -3,7 +3,24 @@
 #include <stdlib.h>
 #include <time.h>
 #include "window_SDL.h"
+#include <SDL.h>
 
+int main (int argc, char *argv[]){
+    (void)argc; // Indique explicitement que tu n'utilises pas 'argc'
+    (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
+    
+    SDL_Window *window = NULL;
+    SDL_Renderer *renderer = NULL;
+    SDL_Surface *picture = NULL;
+    SDL_Texture *texture = NULL;
+    
+    create_window(&window,&renderer);
+    image_load(renderer,&texture,&picture);
+    SDL_Delay(5000);
+    destroy_window(window,renderer);
+    return 0;
+}
+/*
 int roll_die();
 int number_of_player_asker();
 int area_creator(int area[]);
@@ -170,3 +187,4 @@ int *turn_of_who(int *player,int *player2,int *player3,int *player4,int *turn,in
     
     return 0;
 }
+*/

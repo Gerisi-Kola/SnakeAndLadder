@@ -10,4 +10,4 @@
 ### Journal
 - ***30-12*** : J'ai crée la version text du jeu. On peut joueur jusqu'à 4 joueur ou seul contre l'ordi.
 - ***08-01*** : J'ai un 2e fichier qui crée une fenêtre vide pendant une second"
-- ***10-01*** : J'ai enfin un programme qui peut afficher des images grace à SDL_image.
+- ***10-01*** : J'ai enfin un programme qui peut afficher des images grace à SDL_image. J'ai mis la code 'main' en commentaire pour m’occuper que de SDL et j'ai crée un fichier 'constant.h'
