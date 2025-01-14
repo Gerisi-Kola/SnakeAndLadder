@@ -2,9 +2,50 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "window_SDL.h"
 #include <SDL.h>
+#include "window_SDL.h"
+#include "constant.h"
 
+int main(int argc, char *argv[]) {
+    (void)argc; // Indique explicitement que tu n'utilises pas 'argc'
+    (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
+    
+    SDL_Window *window = NULL;
+    SDL_Renderer *renderer = NULL;
+    SDL_Texture *texture = NULL;
+    SDL_Surface *picture = NULL;
+    SDL_Rect rect_button = {BUTTON_LOCATION_X,BUTTON_LOCATION_Y,BUTTON_SIZE_W,BUTTON_SIZE_H};//{((500)/4), (400 + (600-500)/4), ((500)/2), ((600-500)/2)};  // Position et taille du rectangle
+    SDL_Rect rect_bg = {0, 0, 160 * 4, 90 * 4};   // Dimensions de l'image (exemple)
+    
+    // Créer la fenêtre et le renderer
+    if (create_window(&window, &renderer) != 0) {
+        return EXIT_FAILURE;
+    }
+    
+    // Effacer l'écran (fond noir)
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+    
+    // Créer et dessiner le bouton (rectangle jaune)
+    button_create(renderer, &rect_button);
+    
+    // Charger et afficher l'image (si nécessaire)
+    image_load(renderer, &texture, &picture, rect_bg);
+    
+    // Actualiser l'affichage pour que les dessins soient visibles
+    renderer_refresh(renderer);
+    
+    // Attendre 5 secondes avant de fermer
+    SDL_Delay(5000);
+    
+    // Nettoyage
+    destroy_window(window, renderer, texture);
+    
+    return 0;
+}
+
+
+/*
 int main (int argc, char *argv[]){
     (void)argc; // Indique explicitement que tu n'utilises pas 'argc'
     (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
@@ -13,14 +54,18 @@ int main (int argc, char *argv[]){
     SDL_Renderer *renderer = NULL;
     SDL_Surface *picture = NULL;
     SDL_Texture *texture = NULL;
+    SDL_Rect rect_bg = {0,0,WINDOW_WIDTH,WINDOW_WIDTH};
+    SDL_Rect rect_button = {100,500,200,200};//BUTTON_LOCATION_X,BUTTON_LOCATION_Y,BUTTON_SIZE_H,BUTTON_SIZE_W};
     
     create_window(&window,&renderer);
-    image_load(renderer,&texture,&picture);
+    //image_load(renderer,&texture,&picture,rect_bg);
+    button_create(renderer,&rect_button);
+    renderer_refresh(renderer);
     SDL_Delay(5000);
     destroy_window(window,renderer);
     return 0;
 }
-/*
+
 int roll_die();
 int number_of_player_asker();
 int area_creator(int area[]);

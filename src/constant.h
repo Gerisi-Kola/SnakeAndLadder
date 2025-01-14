@@ -1,11 +1,25 @@
 #ifndef CONSTANT_h
 #define CONSTANT_h
 
-#define FILE_BG "image/chateau_qui_brule_honkai.jpg"
+#define FILE_BG "image/g5.jpg"//"image/chateau_qui_brule_honkai.jpg"
 //#define FILE_PLAYER "image/"
 #define WINDOW_HEIGHT 600
 #define WINDOW_WIDTH 500
-#define SIZE_PLAYER (WINDOW_WIDTH/10)
+
+/*
+#define SIZE_PLAYER ((WINDOW_WIDTH)/10)
+#define BUTTON_LOCATION_Y (WINDOW_WIDTH - 100 + (WINDOW_HEIGHT-WINDOW_WIDTH)/4)
+#define BUTTON_LOCATION_X ((WINDOW_WIDTH) /4)
+#define BUTTON_SIZE_H ((WINDOW_HEIGHT-WINDOW_WIDTH)/2)
+#define BUTTON_SIZE_W ((WINDOW_WIDTH)/2)
+*/
+
+#define SIZE_PLAYER ((WINDOW_WIDTH)/10)
+#define BUTTON_LOCATION_Y (WINDOW_WIDTH + (WINDOW_HEIGHT-WINDOW_WIDTH)/4)
+#define BUTTON_LOCATION_X ((WINDOW_WIDTH) /4)
+
+#define BUTTON_SIZE_H ((WINDOW_HEIGHT-WINDOW_WIDTH)/2)
+#define BUTTON_SIZE_W (WINDOW_WIDTH/2)
 
 
 #endif
