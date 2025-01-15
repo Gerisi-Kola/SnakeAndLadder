@@ -1,20 +1,24 @@
 //gcc -Wall -Wextra -I"D:_lib/include" .\src\Window_SDL.c -o ./bin/prog -I include -L lib -lmingw32 -lSDL2main -lSDL2
+//gcc -Wall -Wextra .\src\*.c -o bin/prog -I include -L lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <SDL.h>
 #include "window_SDL.h"
 #include "constant.h"
+#include "event.h"
 
 int main(int argc, char *argv[]) {
     (void)argc; // Indique explicitement que tu n'utilises pas 'argc'
     (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
     
+    int stop = 0; 
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
     SDL_Texture *texture = NULL;
     SDL_Surface *picture = NULL;
-    SDL_Rect rect_button = {BUTTON_LOCATION_X,BUTTON_LOCATION_Y,BUTTON_SIZE_W,BUTTON_SIZE_H};//{((500)/4), (400 + (600-500)/4), ((500)/2), ((600-500)/2)};  // Position et taille du rectangle
+    SDL_Event events;
+    SDL_Rect rect_button = {BUTTON_LOCATION_X,BUTTON_LOCATION_Y,BUTTON_SIZE_W,BUTTON_SIZE_H};  // Position et taille du rectangle
     SDL_Rect rect_bg = {0, 0, 160 * 4, 90 * 4};   // Dimensions de l'image (exemple)
     
     // Créer la fenêtre et le renderer
@@ -36,7 +40,16 @@ int main(int argc, char *argv[]) {
     renderer_refresh(renderer);
     
     // Attendre 5 secondes avant de fermer
-    SDL_Delay(5000);
+    //SDL_Delay(5000);
+    
+    event_create();
+    while (stop == 0){
+        
+        button_check(&stop, &events);
+        //stop = 42;
+        SDL_Delay(100);
+        //stop ++;
+    }
     
     // Nettoyage
     destroy_window(window, renderer, texture);
