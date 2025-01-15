@@ -23,12 +23,13 @@ int button_check(int *stop, SDL_Event *events){
             }
         }
     }
+    return 0;
 }
 
 int event_create(){
     if (0 != SDL_InitSubSystem(SDL_INIT_EVENTS)){
-        
         printf("aaaaaaaaaaaahhhhhhhhhhhhh");
-    
     }
+    
+    return  0;
 }

@@ -7,19 +7,49 @@
 #include "window_SDL.h"
 #include "constant.h"
 #include "event.h"
+#include "player.h"
 
 int main(int argc, char *argv[]) {
     (void)argc; // Indique explicitement que tu n'utilises pas 'argc'
     (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
     
-    int stop = 0; 
+    int stop = 0;
+    int number_of_player = 4;
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
     SDL_Texture *texture = NULL;
     SDL_Surface *picture = NULL;
     SDL_Event events;
     SDL_Rect rect_button = {BUTTON_LOCATION_X,BUTTON_LOCATION_Y,BUTTON_SIZE_W,BUTTON_SIZE_H};  // Position et taille du rectangle
-    SDL_Rect rect_bg = {0, 0, 160 * 4, 90 * 4};   // Dimensions de l'image (exemple)
+    SDL_Rect rect_bg = {0, 0, WINDOW_WIDTH, WINDOW_WIDTH};  // Dimensions de l'image
+    //Player
+    /*
+    SDL_Rect rect_j1 = {5,10, 40, 40};
+    SDL_Rect rect_j2 = {10,10, 40, 40};
+    SDL_Rect rect_j3 = {15,10, 40, 40};
+    SDL_Rect rect_j4 = {20,10, 40, 40};
+    */
+    SDL_Rect player_rects[4] = {
+            {4, 10, 40, 40},  // Player 1
+            {9, 10, 40, 40}, // Player 2
+            {14, 10, 40, 40}, // Player 3
+            {19, 10, 40, 40}  // Player 4
+            };
+    
+    SDL_Texture* array_texture_player[4] = {NULL,NULL,NULL,NULL};
+    /*texture_j1 = NULL;
+    SDL_Texture *texture_j2 = NULL;
+    SDL_Texture *texture_j3 = NULL;
+    SDL_Texture *texture_j4 = NULL;
+    */
+    
+    const char* array_of_images_players[5] = {
+            FILE_PLAYER,
+            FILE_PLAYER2,
+            FILE_PLAYER3,
+            FILE_PLAYER4,
+            FILE_IA
+            };
     
     // Créer la fenêtre et le renderer
     if (create_window(&window, &renderer) != 0) {
@@ -36,6 +66,7 @@ int main(int argc, char *argv[]) {
     // Charger et afficher l'image (si nécessaire)
     image_load(renderer, &texture, &picture, rect_bg);
     
+    player_create_loop(number_of_player,renderer,player_rects,array_texture_player,&picture,array_of_images_players);
     // Actualiser l'affichage pour que les dessins soient visibles
     renderer_refresh(renderer);
     
@@ -46,9 +77,7 @@ int main(int argc, char *argv[]) {
     while (stop == 0){
         
         button_check(&stop, &events);
-        //stop = 42;
-        SDL_Delay(100);
-        //stop ++;
+        SDL_Delay(200);
     }
     
     // Nettoyage
