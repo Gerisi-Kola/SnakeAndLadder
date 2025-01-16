@@ -13,3 +13,4 @@
 - ***10-01*** : J'ai enfin un programme qui peut afficher des images grace à SDL_image. J'ai mis la code 'main' en commentaire pour m’occuper que de SDL et j'ai crée un fichier 'constant.h'.
 - ***14-01*** : Il faut que l'image de fond soit de 500x500 car je n'arrive pas à la redimensionner. J'ai mis en place la gestion des événements.
 - ***15-01*** : J'ai crée le fichier 'player' qui affiche les 4 joueurs.
+- ***16-01*** : J'ai mis en place le déplacement sur la 1re ligne pour les joueurs.

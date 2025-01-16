@@ -28,4 +28,14 @@ int player_create_loop(  int number_of_player,
                         const char *array_of_images_players[]
 );
 
+
+int player_move(int number_of_player, int *player_turn, int players_pos[], SDL_Rect player_rects[]);
+/*              (int player,
+                SDL_Renderer *renderer,
+                SDL_Rect player_rects[],
+                SDL_Texture *array_texture_player[],
+                SDL_Surface **picture,
+                const char *array_of_images_players[]
+                );
+*/
 #endif
