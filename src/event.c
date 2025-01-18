@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <SDL.h>
 #include <SDL_image.h>
-#include "../header/constant.h"
+#include "constant.h"
 //#include "window_SDL.h"
 
 
@@ -21,9 +21,6 @@ int button_check(int *stop, SDL_Event *events){
             //On vérifie si le bouton a été cliquer
             if (events->button.x >= BUTTON_LOCATION_X && events->button.x <= BUTTON_LOCATION_X+BUTTON_SIZE_W
                 && events->button.y >= BUTTON_LOCATION_Y && events->button.x <= BUTTON_LOCATION_Y+BUTTON_SIZE_H){
-                    //printf("Button clic !!");
-                    //player_move(player,renderer,player_rects,array_texture_player,picture,array_of_images_players);
-                    //renderer_refresh(renderer);
                     return 1;
             }
         }
@@ -33,8 +30,7 @@ int button_check(int *stop, SDL_Event *events){
 
 int event_create(){
     if (0 != SDL_InitSubSystem(SDL_INIT_EVENTS)){
-        printf("aaaaaaaaaaaahhhhhhhhhhhhh");
+        printf("SubSysteme Error : Les evenements n'ont pas ete initialiser !!");
     }
-    
     return  0;
 }

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <SDL.h>
 #include <SDL_image.h>
-#include "../header/constant.h"
+#include "constant.h"
 
 int destroy_window(SDL_Window *window, SDL_Renderer *renderer, SDL_Texture *texture) {
     // Cette fonction ferme SDL et détruit tout ce qui doit l’être
