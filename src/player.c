@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "constant.h"
+#include "move_algo.h"
 
 int player_image_load(SDL_Renderer *renderer, SDL_Texture **texture, SDL_Surface **picture, SDL_Rect rect_bg) {
     *texture = SDL_CreateTextureFromSurface(renderer, *picture);
@@ -70,21 +71,27 @@ int player2_image_load(SDL_Renderer *renderer, SDL_Texture **texture, SDL_Surfac
 }
 
 
-int player_move(int number_of_player, int *player_turn, int players_pos[], SDL_Rect player_rects[]){
-    int i = *player_turn % number_of_player;
-    //printf("turn = %d number of player = %d et rest = %d\n\n",*player_turn,number_of_player,i);
+int player_move(int number_of_player, int *turn, int *roll_result, int players_pos[], SDL_Rect player_rects[]){
+    //À qui le tour ?
+    int i = *turn % number_of_player;
+    //printf("turn = %d number of player = %d et rest = %d\n\n",*turn,number_of_player,i);
+    //printf("\ni = %d      player_pos = %d    players_pos[i]%10 != %d\n",i,players_pos[i],players_pos[i]%10);
     
-    printf("\ni = %i      player_pos = %d    players_pos[i]%10 != %d\n",i,players_pos[i],players_pos[i]%10);
+    *roll_result = roll_die_number(roll_result);
     
+    calcul_new_pos(i, players_pos, player_rects, *roll_result);
+    
+    /*
     if(players_pos[i]%10 != 0){
         player_rects[i].x += WINDOW_WIDTH/10;
     }
     else{
         player_rects[i].y += WINDOW_WIDTH/10;
     }
-    players_pos[i] += 1;
+    */
+    //players_pos[i] += 1;
     
-    *player_turn += 1;
+    *turn += 1;
     /* *picture = IMG_Load(array_of_images_players[1]);
             player_image_load(renderer, &array_texture_player[1], picture, player_rects[1]);  */
     //player_create_loop(number_of_player,renderer,player_rects,array_texture_player,picture,array_of_images_players);

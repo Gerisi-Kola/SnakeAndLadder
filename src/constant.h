@@ -1,6 +1,10 @@
 #ifndef CONSTANT_h
 #define CONSTANT_h
 
+// Seed minecraft de pack.png !!
+#define SEED 199 //0x5f3759df //2151901553968352745
+#define SEED_2 7
+
 #define FILE_BG "image/g600.jpg" // 500x500 !!! Taille importante
 #define FILE_PLAYER "image/j1.png"
 #define FILE_PLAYER2 "image/j2.png"

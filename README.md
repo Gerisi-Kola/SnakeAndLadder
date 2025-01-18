@@ -14,3 +14,5 @@
 - ***14-01*** : Il faut que l'image de fond soit de 500x500 car je n'arrive pas à la redimensionner. J'ai mis en place la gestion des événements.
 - ***15-01*** : J'ai crée le fichier 'player' qui affiche les 4 joueurs.
 - ***16-01*** : J'ai mis en place le déplacement sur la 1re ligne pour les joueurs.
+- ***17-01*** : J'ai mis en place un déplacement correct qui change de sens correctement.
+- ***18-01*** : Il y a un algo qui sort toujours un nombre different entre 0 et 6.

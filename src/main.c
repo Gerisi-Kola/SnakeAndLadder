@@ -11,7 +11,8 @@
 
 
 int image_refresher(int number_of_player,
-                    int *player_turn,
+                    int *turn,
+                    int *roll_result,
                     int players_pos[],
                     SDL_Renderer *renderer,
                     SDL_Texture **texture,
@@ -31,7 +32,7 @@ int image_refresher(int number_of_player,
     // Charger et afficher l'image (si nécessaire)
     image_load(renderer, texture, picture, rect_bg);
     
-    player_move(number_of_player,player_turn,players_pos,player_rects);
+    player_move(number_of_player,turn,roll_result,players_pos,player_rects);
     player_create_loop(number_of_player,renderer,player_rects,array_texture_player,picture,array_of_images_players);
     
     renderer_refresh(renderer);
@@ -44,9 +45,10 @@ int main(int argc, char *argv[]) {
     (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
     
     int stop = 0;
-    int number_of_player = 4;
+    int number_of_player = 1;
     int die_roll = 0;
-    int player_turn = 0;
+    int roll_result = SEED_2;
+    int turn = 0;
     int players_pos[4] = {1,1,1,1};
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
@@ -113,7 +115,8 @@ int main(int argc, char *argv[]) {
         if (die_roll == 1){
             die_roll = image_refresher(
                             number_of_player,
-                            &player_turn,
+                            &turn,
+                            &roll_result,
                             players_pos,
                             renderer,
                             &texture,
