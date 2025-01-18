@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <SDL.h>
 #include <SDL_image.h>
-#include "constant.h"
+#include "../header/constant.h"
 //#include "window_SDL.h"
 
 

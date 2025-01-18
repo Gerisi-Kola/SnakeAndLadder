@@ -3,7 +3,7 @@
 #include <time.h>
 #include <SDL.h>
 //#include <SDL_image.h>
-#include "constant.h"
+#include "../header/constant.h"
 
 int roll_die_number(const int *previous_result){
     // Initialiser le générateur de nombres aléatoires avec l'heure actuelle

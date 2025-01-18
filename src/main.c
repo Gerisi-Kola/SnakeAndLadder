@@ -4,10 +4,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include <SDL.h>
-#include "window_SDL.h"
-#include "constant.h"
-#include "event.h"
-#include "player.h"
+#include "../header/window_SDL.h"
+#include "../header/constant.h"
+#include "../header/event.h"
+#include "../header/player.h"
 
 
 int image_refresher(int number_of_player,
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
     (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
     
     int stop = 0;
-    int number_of_player = 1;
+    int number_of_player = 4;
     int die_roll = 0;
     int roll_result = SEED_2;
     int turn = 0;

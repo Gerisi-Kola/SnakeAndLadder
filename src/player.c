@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <SDL.h>
 #include <SDL_image.h>
-#include "constant.h"
-#include "move_algo.h"
+#include "../header/constant.h"
+#include "../header/move_algo.h"
 
 int player_image_load(SDL_Renderer *renderer, SDL_Texture **texture, SDL_Surface **picture, SDL_Rect rect_bg) {
     *texture = SDL_CreateTextureFromSurface(renderer, *picture);
