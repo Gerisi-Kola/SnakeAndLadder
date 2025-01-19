@@ -1,5 +1,6 @@
 #ifndef MOVE_ALGO_H
 #define MOVE_ALGO_H
+#include <SDL.h>
 
 int roll_die_number(int *previous_result);
 

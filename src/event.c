@@ -19,8 +19,10 @@ int button_check(int *stop, SDL_Event *events){
         
         else if (events->type == SDL_MOUSEBUTTONDOWN){
             //On vérifie si le bouton a été cliquer
-            if (events->button.x >= BUTTON_LOCATION_X && events->button.x <= BUTTON_LOCATION_X+BUTTON_SIZE_W
-                && events->button.y >= BUTTON_LOCATION_Y && events->button.x <= BUTTON_LOCATION_Y+BUTTON_SIZE_H){
+            if (    events->button.x >= BUTTON_LOCATION_X
+                &&  events->button.x <= BUTTON_LOCATION_X+BUTTON_SIZE_W
+                &&  events->button.y >= BUTTON_LOCATION_Y
+                &&  events->button.x <= BUTTON_LOCATION_Y+BUTTON_SIZE_H){
                     return 1;
             }
         }

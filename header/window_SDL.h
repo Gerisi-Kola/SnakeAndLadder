@@ -18,7 +18,9 @@ int destroy_window( SDL_Window *window,
                     );
 
 int button_create(  SDL_Renderer *renderer,
-                    SDL_Rect *rect_button
+                    SDL_Rect *rect_button,
+                    SDL_Surface **picture,
+                    SDL_Texture **texture_button
                     );
 
 int renderer_refresh(SDL_Renderer *renderer);

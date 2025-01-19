@@ -1,6 +1,5 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-
 #include <SDL.h>
 
 int player_image_load(  SDL_Renderer *renderer,
