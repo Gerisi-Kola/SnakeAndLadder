@@ -8,6 +8,7 @@
 #include "constant.h"
 #include "event.h"
 #include "player.h"
+#include "move_algo.h"
 
 
 int image_refresher(int number_of_player,
@@ -24,8 +25,6 @@ int image_refresher(int number_of_player,
                     SDL_Surface **picture,
                     const char *array_of_images_players[]){
     
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
     
     // Créer et dessiner le bouton (rectangle jaune)
     button_create(renderer, &rect_button, picture, texture_button);
@@ -33,10 +32,8 @@ int image_refresher(int number_of_player,
     // Charger et afficher l'image (si nécessaire)
     image_load(renderer, texture, picture, rect_bg);
     
-    player_move(number_of_player,
-                turn,roll_result,
-                players_pos,
-                player_rects);
+    
+    
     player_create_loop( number_of_player,
                         renderer,
                         player_rects,
@@ -44,48 +41,58 @@ int image_refresher(int number_of_player,
                         picture,
                         array_of_images_players);
     
-    renderer_refresh(renderer);
+    
     
     return 0;
 }
 
 int area_creator(int area[]){
-    //Cree le terrin (les serpents et les echelles) 
+    //Cree le terrin (les serpents et les échelles) 
     //debut = 0 et fin = 99
     
     // Ladders
-    area[2] = 36;  //38
+   // area[2] = 36;  //38
     area[4] = 10;  //14
     area[9] = 22;  //31
     area[21] = 21; //42
-    area[28] = 53; //81
+    //area[28] = 53; //81
     area[51] = 16; //67
-    area[74] = 17; //91
-    area[77] = 10; //87
-    area[80] = 15; //95
-    area[85] = 5;  //90
+    //area[74] = 17; //91
+    //area[77] = 10; //87
+    //area[80] = 15; //95
+    //area[85] = 5;  //90
     
     //Snakes
     area[17] = -10; //7
-    area[35] = -15; //20
+    //area[35] = -15; //20
     area[54] = -20; //34
     area[62] = -43; //19
-    area[64] = -4;  //60
-    area[87] = -50; //37
-    area[93] = -20; //73
-    area[94] = -19; //75
-    area[96] = -20; //76
-    area[98] = -5;  //93
+    //area[64] = -4;  //60
+    //area[87] = -50; //37
+    //area[93] = -20; //73
+    //area[94] = -19; //75
+    //area[96] = -20; //76
+    //area[98] = -5;  //93
     
     return 0;
 }
+
+
+int check_snake_and_ladder(int area[],int players_pos[],int turn,int number_of_player){
+    int actual_turn = turn % number_of_player;
+    int pos =  players_pos[actual_turn];
+    
+    return area[pos];
+}
+
+
 
 int main(int argc, char *argv[]) {
     (void)argc; // Indique explicitement que tu n'utilises pas 'argc'
     (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
     
     int stop = 0;
-    int number_of_player = 4;
+    int number_of_player = 2;
     int die_roll = 0;
     int roll_result = SEED_2;
     int turn = 0;
@@ -147,6 +154,17 @@ int main(int argc, char *argv[]) {
         
         //Effectue le déplacement du joueur concerner et rafraîchi l'affichage
         if (die_roll == 1){
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+            SDL_RenderClear(renderer);
+            
+            roll_result = roll_die_number(&roll_result);
+            
+            player_move(number_of_player,
+                &turn,
+                roll_result,
+                players_pos,
+                player_rects);
+            
             die_roll = image_refresher(
                             number_of_player,
                             &turn,
@@ -162,7 +180,35 @@ int main(int argc, char *argv[]) {
                             &picture,
                             array_of_images_players);
             
-            //check_snake_and_ladder
+            renderer_refresh(renderer);
+            
+            int area_table = check_snake_and_ladder(area, players_pos, turn, number_of_player);
+            
+            if (0 != area_table){
+                player_move(number_of_player,
+                            &turn,
+                            area_table,
+                            players_pos,
+                            player_rects);
+                
+                die_roll = image_refresher(
+                            number_of_player,
+                            &turn,
+                            &area_table,
+                            players_pos,
+                            renderer,
+                            &texture,
+                            &texture_button,
+                            rect_button,
+                            rect_bg,
+                            player_rects,
+                            array_texture_player,
+                            &picture,
+                            array_of_images_players);
+                
+                renderer_refresh(renderer);
+            }
+        turn ++;
         }
         SDL_Delay(200);
     }
