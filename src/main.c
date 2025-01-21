@@ -51,10 +51,14 @@ int area_creator(int area[]){
     //debut = 0 et fin = 99
     
     // Ladders
-   // area[2] = 36;  //38
-    area[4] = 10;  //14
-    area[9] = 22;  //31
-    area[21] = 21; //42
+    area[1] = 36;  //38
+    area[4] = 9; // 10;  //14
+    area[9] = 21; // 22;  //31
+    area[21] = 20; // 21; //42
+    area[17] = 10;
+    /*
+    
+    
     //area[28] = 53; //81
     area[51] = 16; //67
     //area[74] = 17; //91
@@ -73,7 +77,7 @@ int area_creator(int area[]){
     //area[94] = -19; //75
     //area[96] = -20; //76
     //area[98] = -5;  //93
-    
+    */
     return 0;
 }
 
@@ -81,7 +85,7 @@ int area_creator(int area[]){
 int check_snake_and_ladder(int area[],int players_pos[],int turn,int number_of_player){
     int actual_turn = turn % number_of_player;
     int pos =  players_pos[actual_turn];
-    
+    printf("\npos = %d    area = %d !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",pos,area[pos]);
     return area[pos];
 }
 
@@ -92,11 +96,11 @@ int main(int argc, char *argv[]) {
     (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
     
     int stop = 0;
-    int number_of_player = 2;
+    int number_of_player = 1;
     int die_roll = 0;
     int roll_result = SEED_2;
     int turn = 0;
-    int players_pos[4] = {1,1,1,1};
+    int players_pos[4] = {0};
     int area[100] = {0};
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
@@ -108,11 +112,19 @@ int main(int argc, char *argv[]) {
     SDL_Rect rect_bg = {0, 0, WINDOW_WIDTH, WINDOW_WIDTH};  // Dimensions de l'image
     //Player
     SDL_Rect player_rects[4] = {
-            {4,  550, 40, 40},  // Player 1
-            {9,  550, 40, 40}, // Player 2
-            {14, 550, 40, 40}, // Player 3
-            {19, 550, 40, 40}  // Player 4
+            {POS_X,  POS_Y, 40, 40},  // Player 1
+            {POS_X*2,  POS_Y, 40, 40}, // Player 2
+            {POS_X*3,  POS_Y, 40, 40}, // Player 3
+            {POS_X*4,  POS_Y, 40, 40}  // Player 4
             };
+    /*
+    SDL_Rect player_rects[4] = {
+            {POS_X,  POS_Y, 40, 40},  // Player 1
+            {POS_X*2,  POS_Y, 40, 40}, // Player 2
+            {POS_X*3,  POS_Y, 40, 40}, // Player 3
+            {POS_X*4,  POS_Y, 40, 40}  // Player 4
+            };
+    */
     
     SDL_Texture* array_texture_player[4] = {NULL,NULL,NULL,NULL};
     
@@ -158,6 +170,7 @@ int main(int argc, char *argv[]) {
             SDL_RenderClear(renderer);
             
             roll_result = roll_die_number(&roll_result);
+            roll_result = 1;
             
             player_move(number_of_player,
                 &turn,
@@ -183,7 +196,7 @@ int main(int argc, char *argv[]) {
             renderer_refresh(renderer);
             
             int area_table = check_snake_and_ladder(area, players_pos, turn, number_of_player);
-            
+            //area_table --;
             if (0 != area_table){
                 player_move(number_of_player,
                             &turn,

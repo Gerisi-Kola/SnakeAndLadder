@@ -7,6 +7,10 @@
 #define SEED                 199 //0x5f3759df //2151901553968352745
 #define SEED_2               7
 
+#define POS_Y 550
+#define POS_X 4
+#define POS_X_MAX 600
+
 #define MAX_CASE             100
 
 #define FILE_BG              "image/image3.png" // 600x600 !!! Taille importante

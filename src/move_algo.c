@@ -33,6 +33,43 @@ int roll_die_number(int *previous_result){
 
 
 int calcul_new_pos(int i, int players_pos[], SDL_Rect player_rects[], int roll_num){
+    //roll_num = 1;
+    //players_pos[i] = 8;
+    int pos = players_pos[i] + roll_num;
+    if (pos >= MAX_CASE-1){
+        pos = MAX_CASE-1;
+    }
+    players_pos[i] = pos;
+    
+    int unite = pos%10;
+    int dizaine = pos/10;
+    
+    //printf("\nunite = %d et pos = %d",unite, players_pos[i]);
+    printf("\nRoll_Num %d",roll_num);
+    
+    //printf("\n roll = %d",roll_num);
+    int pos_y = POS_Y - (pos/10 * 60); //550 - (pos/10 * 50);
+    
+    
+    int pos_x;
+    
+    if(dizaine %2 == 0){
+        pos_x = ((unite-1) * 60) + 60 + POS_X *(i+1);
+        printf("\nif if if if if");
+    }
+    else{
+        pos_x = POS_X_MAX - (((unite) * 60) + 40 + POS_X *(i+1));
+        printf("\nelse else");
+    }
+    
+    
+    player_rects[i].x = pos_x;
+    player_rects[i].y = pos_y;
+    
+    printf("\npos_y = %d",pos_y);
+    printf("\npos_x = %d",pos_x);
+    
+    return 0;/*
     // On s'assure de ne pas dépasser 100 (la fin du jeu)
     if(roll_num > 0){
         if(roll_num + players_pos[i] > MAX_CASE){
@@ -76,4 +113,5 @@ int calcul_new_pos(int i, int players_pos[], SDL_Rect player_rects[], int roll_n
         printf("\nposition = %d",players_pos[i]);
     }
     return 0;
+    */
 }

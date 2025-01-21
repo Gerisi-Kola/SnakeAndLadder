@@ -18,3 +18,4 @@
 - ***18-01*** : Il y a un algo qui sort toujours un nombre different entre 0 et 6. J'ai séparer le code source en 2 fichiers "src" pour les '.c' et "header" pour les '.h' . J'ai un peu nettoyer les partie de code que j'avais mis en commentaire.
 - ***19-01*** : J'ai corriger la limite pour ne pas dépasser la fin (100) et le déplacement se fait maintenant de bas en haut. J'ai fait un visuel paint du boutons et de du background.
 - ***20-01*** : J'ai mis en place les échelle mais les serpents ne t’amène pas au bon endroit.
+- ***21-01*** : J'ai retravailler la fonction qui calcul la nouvelle position des joueurs.
