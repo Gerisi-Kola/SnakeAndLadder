@@ -45,9 +45,9 @@ int player_create_loop( int number_of_player,
 
 int player_move(int number_of_player, int *turn, int roll_result, int players_pos[], SDL_Rect player_rects[]){
     //À qui le tour ?
-    int i = *turn % number_of_player;
+    int actual_player = *turn % number_of_player;
     
-    calcul_new_pos(i, players_pos, player_rects, roll_result);
+    calcul_new_pos(actual_player, players_pos, player_rects, roll_result);
     
     return 0;
     }

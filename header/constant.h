@@ -13,7 +13,7 @@
 
 #define MAX_CASE             100
 
-#define FILE_BG              "image/image3.png" // 600x600 !!! Taille importante
+#define FILE_BG              "image/Sans20titre.png" // 600x600 !!! Taille importante
 #define FILE_BUTTON          "image/go_image.png"
 #define FILE_PLAYER          "image/j1.png"
 #define FILE_PLAYER2         "image/j2.png"

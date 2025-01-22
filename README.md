@@ -19,3 +19,4 @@
 - ***19-01*** : J'ai corriger la limite pour ne pas dépasser la fin (100) et le déplacement se fait maintenant de bas en haut. J'ai fait un visuel paint du boutons et de du background.
 - ***20-01*** : J'ai mis en place les échelle mais les serpents ne t’amène pas au bon endroit.
 - ***21-01*** : J'ai retravailler la fonction qui calcul la nouvelle position des joueurs.
+- ***22-01*** : J'ai fini de mettre en place toutes les échelles et les serpents.

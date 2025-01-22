@@ -12,9 +12,6 @@
 
 
 int image_refresher(int number_of_player,
-                    int *turn,
-                    int *roll_result,
-                    int players_pos[],
                     SDL_Renderer *renderer,
                     SDL_Texture **texture,
                     SDL_Texture **texture_button,
@@ -50,42 +47,38 @@ int area_creator(int area[]){
     //Cree le terrin (les serpents et les échelles) 
     //debut = 0 et fin = 99
     
+    //Il y a un décalage de 1 entre l'index de la case et la case
     // Ladders
-    area[1] = 36;  //38
-    area[4] = 9; // 10;  //14
-    area[9] = 21; // 22;  //31
-    area[21] = 20; // 21; //42
-    area[17] = 10;
-    /*
-    
-    
-    //area[28] = 53; //81
-    area[51] = 16; //67
-    //area[74] = 17; //91
-    //area[77] = 10; //87
-    //area[80] = 15; //95
-    //area[85] = 5;  //90
+    area[1]  = 36; //38
+    area[3]  = 10; //14
+    area[8]  = 22; //31
+    area[20] = 21; //42
+    area[24] = 10; //35
+    area[44] = 12; //57
+    area[50] = 17; //68
+    area[64] = 12; //77
+    area[71] = 21; //93
+    area[81] = 16; //98
     
     //Snakes
-    area[17] = -10; //7
-    //area[35] = -15; //20
-    area[54] = -20; //34
-    area[62] = -43; //19
-    //area[64] = -4;  //60
-    //area[87] = -50; //37
-    //area[93] = -20; //73
-    //area[94] = -19; //75
-    //area[96] = -20; //76
-    //area[98] = -5;  //93
-    */
+    area[12] = -6;  //7
+    area[16] = -10; //7
+    area[32] = -4;  //29
+    area[53] = -27; //27
+    area[55] = -12; //44
+    area[61] = -43; //19
+    area[69] = -21; //49
+    area[93] = -19; //75
+    area[95] = -20; //76
+    area[98] = -16; //83
     return 0;
 }
 
 
 int check_snake_and_ladder(int area[],int players_pos[],int turn,int number_of_player){
-    int actual_turn = turn % number_of_player;
-    int pos =  players_pos[actual_turn];
-    printf("\npos = %d    area = %d !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",pos,area[pos]);
+    int actual_player = turn % number_of_player;
+    int pos =  players_pos[actual_player];
+    //printf("\npos = %d    area = %d !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",pos,area[pos]);
     return area[pos];
 }
 
@@ -96,11 +89,11 @@ int main(int argc, char *argv[]) {
     (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
     
     int stop = 0;
-    int number_of_player = 1;
+    int number_of_player = 4;
     int die_roll = 0;
     int roll_result = SEED_2;
     int turn = 0;
-    int players_pos[4] = {0};
+    int players_pos[4] = {0,0,0,0};
     int area[100] = {0};
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
@@ -117,14 +110,6 @@ int main(int argc, char *argv[]) {
             {POS_X*3,  POS_Y, 40, 40}, // Player 3
             {POS_X*4,  POS_Y, 40, 40}  // Player 4
             };
-    /*
-    SDL_Rect player_rects[4] = {
-            {POS_X,  POS_Y, 40, 40},  // Player 1
-            {POS_X*2,  POS_Y, 40, 40}, // Player 2
-            {POS_X*3,  POS_Y, 40, 40}, // Player 3
-            {POS_X*4,  POS_Y, 40, 40}  // Player 4
-            };
-    */
     
     SDL_Texture* array_texture_player[4] = {NULL,NULL,NULL,NULL};
     
@@ -170,19 +155,16 @@ int main(int argc, char *argv[]) {
             SDL_RenderClear(renderer);
             
             roll_result = roll_die_number(&roll_result);
-            roll_result = 1;
+            //roll_result = 1;
             
-            player_move(number_of_player,
-                &turn,
-                roll_result,
-                players_pos,
-                player_rects);
-            
-            die_roll = image_refresher(
-                            number_of_player,
+            player_move(    number_of_player,
                             &turn,
-                            &roll_result,
+                            roll_result,
                             players_pos,
+                            player_rects);
+            
+            image_refresher(
+                            number_of_player,
                             renderer,
                             &texture,
                             &texture_button,
@@ -196,19 +178,17 @@ int main(int argc, char *argv[]) {
             renderer_refresh(renderer);
             
             int area_table = check_snake_and_ladder(area, players_pos, turn, number_of_player);
-            //area_table --;
+            
             if (0 != area_table){
+                SDL_Delay(300);
                 player_move(number_of_player,
                             &turn,
                             area_table,
                             players_pos,
                             player_rects);
                 
-                die_roll = image_refresher(
+                image_refresher(
                             number_of_player,
-                            &turn,
-                            &area_table,
-                            players_pos,
                             renderer,
                             &texture,
                             &texture_button,

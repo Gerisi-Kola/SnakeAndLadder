@@ -32,20 +32,18 @@ int roll_die_number(int *previous_result){
 }
 
 
-int calcul_new_pos(int i, int players_pos[], SDL_Rect player_rects[], int roll_num){
-    //roll_num = 1;
-    //players_pos[i] = 8;
-    int pos = players_pos[i] + roll_num;
+int calcul_new_pos(int actual_player, int players_pos[], SDL_Rect player_rects[], int roll_num){
+    int pos = players_pos[actual_player] + roll_num;
     if (pos >= MAX_CASE-1){
         pos = MAX_CASE-1;
     }
-    players_pos[i] = pos;
+    players_pos[actual_player] = pos;
     
     int unite = pos%10;
     int dizaine = pos/10;
     
     //printf("\nunite = %d et pos = %d",unite, players_pos[i]);
-    printf("\nRoll_Num %d",roll_num);
+    //printf("\nRoll_Num %d",roll_num);
     
     //printf("\n roll = %d",roll_num);
     int pos_y = POS_Y - (pos/10 * 60); //550 - (pos/10 * 50);
@@ -54,64 +52,20 @@ int calcul_new_pos(int i, int players_pos[], SDL_Rect player_rects[], int roll_n
     int pos_x;
     
     if(dizaine %2 == 0){
-        pos_x = ((unite-1) * 60) + 60 + POS_X *(i+1);
-        printf("\nif if if if if");
+        pos_x = ((unite-1) * 60) + 60 + POS_X *(actual_player+1);
+        //printf("\nif if if if if");
     }
     else{
-        pos_x = POS_X_MAX - (((unite) * 60) + 40 + POS_X *(i+1));
-        printf("\nelse else");
+        pos_x = POS_X_MAX - (((unite) * 60) + 40 + POS_X *(actual_player+1));
+        //printf("\nelse else");
     }
     
     
-    player_rects[i].x = pos_x;
-    player_rects[i].y = pos_y;
+    player_rects[actual_player].x = pos_x;
+    player_rects[actual_player].y = pos_y;
     
-    printf("\npos_y = %d",pos_y);
-    printf("\npos_x = %d",pos_x);
+    //printf("\npos_y = %d",pos_y);
+    //printf("\npos_x = %d",pos_x);
     
-    return 0;/*
-    // On s'assure de ne pas dépasser 100 (la fin du jeu)
-    if(roll_num > 0){
-        if(roll_num + players_pos[i] > MAX_CASE){
-            roll_num = MAX_CASE - players_pos[i];
-        }
-        // On calcul la position finale en se déplacent case par case
-        for (int j = 0; j <roll_num; j ++){
-            if(players_pos[i]%10 != 0){
-                if ((players_pos[i]/10)%2 == 0){
-                player_rects[i].x += WINDOW_WIDTH/10;
-                }
-                else{
-                    player_rects[i].x -= WINDOW_WIDTH/10;
-                }
-            }
-            else{
-                player_rects[i].y -= WINDOW_WIDTH/10;
-            }
-            players_pos[i] += 1;
-        }
-    }
-    
-    else if(roll_num < 0){
-        printf("\nSnake = %d",roll_num);
-        // On calcul la position finale en se déplacent case par case
-        for (int j = roll_num; j < 0; j ++){
-            printf("\nPosition --");
-            if(players_pos[i]%10 != 0){
-                if ((players_pos[i]/10)%2 == 0){
-                player_rects[i].x -= WINDOW_WIDTH/10;
-                }
-                else{
-                    player_rects[i].x += WINDOW_WIDTH/10;
-                }
-            }
-            else{
-                player_rects[i].y += WINDOW_WIDTH/10;
-            }
-            players_pos[i] -= 1;
-        }
-        printf("\nposition = %d",players_pos[i]);
-    }
     return 0;
-    */
 }
