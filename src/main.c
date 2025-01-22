@@ -10,7 +10,6 @@
 #include "player.h"
 #include "move_algo.h"
 
-
 int image_refresher(int number_of_player,
                     SDL_Renderer *renderer,
                     SDL_Texture **texture,
@@ -22,14 +21,11 @@ int image_refresher(int number_of_player,
                     SDL_Surface **picture,
                     const char *array_of_images_players[]){
     
-    
     // Créer et dessiner le bouton (rectangle jaune)
     button_create(renderer, &rect_button, picture, texture_button);
     
     // Charger et afficher l'image (si nécessaire)
     image_load(renderer, texture, picture, rect_bg);
-    
-    
     
     player_create_loop( number_of_player,
                         renderer,
@@ -37,8 +33,6 @@ int image_refresher(int number_of_player,
                         array_texture_player,
                         picture,
                         array_of_images_players);
-    
-    
     
     return 0;
 }
@@ -78,10 +72,8 @@ int area_creator(int area[]){
 int check_snake_and_ladder(int area[],int players_pos[],int turn,int number_of_player){
     int actual_player = turn % number_of_player;
     int pos =  players_pos[actual_player];
-    //printf("\npos = %d    area = %d !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",pos,area[pos]);
     return area[pos];
 }
-
 
 
 int main(int argc, char *argv[]) {
@@ -89,7 +81,8 @@ int main(int argc, char *argv[]) {
     (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
     
     int stop = 0;
-    int number_of_player = 4;
+    int actual_player = 0;
+    int number_of_player = 3;
     int die_roll = 0;
     int roll_result = SEED_2;
     int turn = 0;
@@ -113,7 +106,7 @@ int main(int argc, char *argv[]) {
     
     SDL_Texture* array_texture_player[4] = {NULL,NULL,NULL,NULL};
     
-    const char* array_of_images_players[5] = {
+    const char *array_of_images_players_4[] = {
             FILE_PLAYER,
             FILE_PLAYER2,
             FILE_PLAYER3,
@@ -121,6 +114,20 @@ int main(int argc, char *argv[]) {
             FILE_IA
             };
     
+    const char *array_of_images_players_2[] = {
+            FILE_PLAYER,
+            FILE_IA
+        };
+    
+    const char **array_of_images_players;
+    
+    if (number_of_player == 1){
+        array_of_images_players = array_of_images_players_2;
+        number_of_player = 2;
+    }
+    else{
+        array_of_images_players = array_of_images_players_4;
+    }
     
     area_creator(area);
     
@@ -130,7 +137,7 @@ int main(int argc, char *argv[]) {
     }
     
     // Effacer l'écran (fond noir)
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderClear(renderer);
     
     // Créer et dessiner le bouton (rectangle jaune)
@@ -151,12 +158,26 @@ int main(int argc, char *argv[]) {
         
         //Effectue le déplacement du joueur concerner et rafraîchi l'affichage
         if (die_roll == 1){
-            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+            actual_player = turn % number_of_player;
+        if (actual_player == 3
+            || (number_of_player == 2 && actual_player == 1)
+            || (number_of_player == 3 && actual_player == 2)
+            ){
+                SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Rouge
+            }
+            else if (actual_player == 0){
+                SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // Bleu
+            }
+            else if (actual_player == 1){
+                SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); // Vert
+            }
+            else if (actual_player == 2){
+                SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255); // Jaune
+            }
             SDL_RenderClear(renderer);
             
             roll_result = roll_die_number(&roll_result);
-            //roll_result = 1;
-            
+                        
             player_move(    number_of_player,
                             &turn,
                             roll_result,
@@ -202,6 +223,7 @@ int main(int argc, char *argv[]) {
                 renderer_refresh(renderer);
             }
         turn ++;
+        
         }
         SDL_Delay(200);
     }

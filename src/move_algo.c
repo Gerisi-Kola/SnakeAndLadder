@@ -42,30 +42,22 @@ int calcul_new_pos(int actual_player, int players_pos[], SDL_Rect player_rects[]
     int unite = pos%10;
     int dizaine = pos/10;
     
-    //printf("\nunite = %d et pos = %d",unite, players_pos[i]);
-    //printf("\nRoll_Num %d",roll_num);
-    
-    //printf("\n roll = %d",roll_num);
-    int pos_y = POS_Y - (pos/10 * 60); //550 - (pos/10 * 50);
+    int pos_y = POS_Y - (pos/10 * 60);
     
     
     int pos_x;
     
     if(dizaine %2 == 0){
         pos_x = ((unite-1) * 60) + 60 + POS_X *(actual_player+1);
-        //printf("\nif if if if if");
     }
     else{
         pos_x = POS_X_MAX - (((unite) * 60) + 40 + POS_X *(actual_player+1));
-        //printf("\nelse else");
     }
     
     
     player_rects[actual_player].x = pos_x;
     player_rects[actual_player].y = pos_y;
     
-    //printf("\npos_y = %d",pos_y);
-    //printf("\npos_x = %d",pos_x);
     
     return 0;
 }

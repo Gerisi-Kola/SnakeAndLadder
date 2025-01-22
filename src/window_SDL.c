@@ -28,22 +28,6 @@ int renderer_refresh(SDL_Renderer *renderer) {
     return 0;
 }
 
-/*
-//int button_create(SDL_Renderer *renderer, SDL_Rect *rect_button, SDL_Surface **picture, SDL_Texture **texture_button) {
-    // Définir la couleur du rectangle (jaune)
-    //SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
-    // Dessiner le rectangle
-    *picture = IMG_Load(FILE_BUTTON);
-    *texture_button = SDL_CreateTextureFromSurface(renderer, *picture);
-    
-    SDL_QueryTexture(*texture_button, NULL, NULL, &rect_button->w, &rect_button->h);
-    
-    // Afficher l'image
-    SDL_RenderCopy(renderer, *texture_button, NULL, rect_button);  // Afficher la texture dans la fenêtre
-    //SDL_RenderFillRect(renderer, rect_button);
-    return 0;
-}
-*/
 
 // Modifie la fonction button_create pour accepter un SDL_Rect* au lieu d'un SDL_Rect
 int button_create(SDL_Renderer *renderer, SDL_Rect *rect_button, SDL_Surface **picture, SDL_Texture **texture_button) {
