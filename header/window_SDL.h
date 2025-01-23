@@ -6,7 +6,7 @@ int create_window(  SDL_Window **window,
                     SDL_Renderer **renderer
                     );
 
-int image_load( SDL_Renderer *renderer,
+int image_bg_load( SDL_Renderer *renderer,
                 SDL_Texture **texture,
                 SDL_Surface **picture,
                 SDL_Rect rect_bg

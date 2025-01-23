@@ -34,8 +34,8 @@ int roll_die_number(int *previous_result){
 
 int calcul_new_pos(int actual_player, int players_pos[], SDL_Rect player_rects[], int roll_num){
     int pos = players_pos[actual_player] + roll_num;
-    if (pos >= MAX_CASE-1){
-        pos = MAX_CASE-1;
+    if (pos >= MAX_CASE){
+        pos = MAX_CASE;
     }
     players_pos[actual_player] = pos;
     

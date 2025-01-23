@@ -11,15 +11,28 @@
 #define POS_X                4
 #define POS_X_MAX            600
 
-#define MAX_CASE             100
+#define MAX_CASE             99
+
+#define MOVE_STEP            20
+#define DELAY_MOVE_MAX       700
+
 
 #define FILE_BG              "image/Sans20titre.png" // 600x600 !!! Taille importante
+/*
 #define FILE_BUTTON          "image/go_image.png"
 #define FILE_PLAYER          "image/j1.png"
 #define FILE_PLAYER2         "image/j2_v2.png"
 #define FILE_PLAYER3         "image/j3.png"
 #define FILE_PLAYER4         "image/j4_v2.png"
 #define FILE_IA              "image/ia.png"
+*/
+
+#define FILE_BUTTON          "image/go_image.png"
+#define FILE_PLAYER          "image/j1_manuscrit.png"
+#define FILE_PLAYER2         "image/j2_manuscrit.png"
+#define FILE_PLAYER3         "image/j3_manuscrit.png"
+#define FILE_PLAYER4         "image/j4_manuscrit.png"
+#define FILE_IA              "image/ia_manuscrit.png"
 
 #define SIZE_PLAYER          ((WINDOW_WIDTH)/10)
 #define BUTTON_LOCATION_Y    (WINDOW_WIDTH + (WINDOW_HEIGHT-WINDOW_WIDTH)/4)

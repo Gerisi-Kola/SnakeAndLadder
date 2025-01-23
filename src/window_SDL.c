@@ -42,7 +42,7 @@ int button_create(SDL_Renderer *renderer, SDL_Rect *rect_button, SDL_Surface **p
     return 0;
 }
 
-int image_load(SDL_Renderer *renderer, SDL_Texture **texture, SDL_Surface **picture, SDL_Rect rect_bg) {
+int image_bg_load(SDL_Renderer *renderer, SDL_Texture **texture, SDL_Surface **picture, SDL_Rect rect_bg) {
     *picture = IMG_Load(FILE_BG);
     *texture = SDL_CreateTextureFromSurface(renderer, *picture);
     

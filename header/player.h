@@ -8,7 +8,7 @@ int player_image_load(  SDL_Renderer *renderer,
                         SDL_Rect rect_bg
                         );
 
-int player_create_loop(  int number_of_player,
+int player_refresh_loop(  int number_of_player,
                         SDL_Renderer *renderer,
                         SDL_Rect player_rects[],
                         SDL_Texture *array_texture_player[],
@@ -16,11 +16,11 @@ int player_create_loop(  int number_of_player,
                         const char *array_of_images_players[]
                         );
 
-int player_move(int number_of_player,
-                int *turn,
+int player_move(int actual_player,
                 int roll_result,
                 int players_pos[],
-                SDL_Rect player_rects[]
+                SDL_Rect player_rects[],
+                SDL_Rect rect_transition_player[]
                 );
 
 #endif
