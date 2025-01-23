@@ -10,6 +10,7 @@
 #include "event.h"
 #include "player.h"
 #include "move_algo.h"
+#include "music.h"
 
 int image_refresher_game(int number_of_player,
                     SDL_Renderer *renderer,
@@ -97,6 +98,8 @@ int main(int argc, char *argv[]) {
     SDL_Texture *texture_button = NULL;
     SDL_Surface *picture = NULL;
     SDL_Event events;
+    Mix_Music *music_bg = NULL;
+    Mix_Music *music_button = NULL;
     SDL_Rect rect_button = {BUTTON_LOCATION_X,BUTTON_LOCATION_Y,BUTTON_SIZE_W,BUTTON_SIZE_H};  // Position et taille du rectangle
     SDL_Rect rect_bg = {0, 0, WINDOW_WIDTH, WINDOW_WIDTH};  // Dimensions de l'image
     SDL_Rect rect_transition_player[MOVE_STEP] = {0};
@@ -156,7 +159,10 @@ int main(int argc, char *argv[]) {
                             &picture,
                             array_of_images_players);
     
-    
+    music_init();
+    music_bg_load(&music_bg);
+    music_button_load(&music_button);
+    music_bg_play(music_bg);
     
     // Initialise les événements
     stop = event_create();
@@ -166,6 +172,8 @@ int main(int argc, char *argv[]) {
         
         //Effectue le déplacement du joueur concerner et rafraîchi l'affichage
         if (die_roll == 1){
+            music_button_play(music_button);
+            
             actual_player = turn % number_of_player;
         if (actual_player == 3
             || (number_of_player == 2 && actual_player == 1)
