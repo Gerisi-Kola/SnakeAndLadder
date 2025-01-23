@@ -27,7 +27,7 @@ int player_refresh_loop( int number_of_player,
                         SDL_Texture *array_texture_player[],
                         SDL_Surface **picture,
                         const char *array_of_images_players[]) {
-// Charger et afficher les textures des joueurs
+    // Charger et afficher les textures des joueurs
     if(number_of_player > 1) {
         for (int i = 0; i < number_of_player; i++) {
             *picture = IMG_Load(array_of_images_players[i]);
@@ -86,9 +86,9 @@ int player_refresh_loop( int number_of_player,
 }
 */
 
-int player_animation(int actual_player, int roll_result, int players_pos[], SDL_Rect player_rects[], SDL_Rect rect_old_player, SDL_Rect rect_transition_player[]){
-    printf("player_old_rect.x = %d, player_old_rect.y = %d\n", rect_old_player.x, rect_old_player.y);
-    printf("player_new_rect.x = %d, player_new_rect.y = %d\n", player_rects[actual_player].x, player_rects[actual_player].y);
+int player_animation(int actual_player, SDL_Rect player_rects[], SDL_Rect rect_old_player, SDL_Rect rect_transition_player[]){
+    //printf("player_old_rect.x = %d, player_old_rect.y = %d\n", rect_old_player.x, rect_old_player.y);
+    //printf("player_new_rect.x = %d, player_new_rect.y = %d\n", player_rects[actual_player].x, player_rects[actual_player].y);
     SDL_Rect rect_new_player;
     rect_new_player.x = player_rects[actual_player].x - rect_old_player.x;
     rect_new_player.y = player_rects[actual_player].y - rect_old_player.y;
@@ -103,10 +103,10 @@ int player_animation(int actual_player, int roll_result, int players_pos[], SDL_
     rect_array_player[MOVE_STEP-1].x = player_rects[actual_player].x;
     rect_array_player[MOVE_STEP-1].y = player_rects[actual_player].y;
     for (int i = 0; i < MOVE_STEP; i++) {
-        printf("rect_array_player[%d].x = %d, rect_array_player[%d].y = %d\n", 
-                i, rect_array_player[i].x, i, rect_array_player[i].y);
+        // printf("rect_array_player[%d].x = %d, rect_array_player[%d].y = %d\n", 
+        //        i, rect_array_player[i].x, i, rect_array_player[i].y);
     }
-    printf("\n\n\n");
+    //printf("\n\n\n");
     
     for (int i = 0; i < MOVE_STEP; i++) {
         rect_transition_player[i] = rect_array_player[i];
@@ -125,7 +125,7 @@ int player_move(int actual_player, int roll_result, int players_pos[], SDL_Rect 
     
     calcul_new_pos(actual_player, players_pos, player_rects, roll_result);
     
-    player_animation(actual_player, roll_result, players_pos, player_rects, rect_old_player, rect_transition_player);
+    player_animation(actual_player, player_rects, rect_old_player, rect_transition_player);
     
     return 0;
     }
