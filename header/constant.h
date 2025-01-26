@@ -34,6 +34,11 @@
 #define FILE_PLAYER4         "image/j4_manuscrit.png"
 #define FILE_IA              "image/ia_manuscrit.png"
 
+#define FILE_BUTTON_PLAY_1   "image/go_image.png" //"image/play_1.png"
+#define FILE_BUTTON_PLAY_2   "image/go_image.png" //"image/play_2.png"
+#define FILE_BUTTON_PLAY_3   "image/go_image.png" //"image/play_3.png"
+#define FILE_BUTTON_PLAY_4   "image/go_image.png" //"image/play_4.png"
+
 #define FILE_MUSIC_BG        "music/dreams.ogg"
 #define FILE_MUSIC_BUTTON    "music/iphone_son_de_touche.ogg"
 

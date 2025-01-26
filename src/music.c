@@ -42,13 +42,13 @@ int music_bg_play(Mix_Music *music){
     return 0;
 }
 
-int music_button_play(Mix_Music *music){
-    Mix_PlayChannel(1, music, 0);
-    Mix_VolumeMusic(64); // 50% du volume
-    return 0;
-}
+// int music_button_play(Mix_Music *music){
+//     Mix_PlayChannel(1, music, 0);
+//     Mix_VolumeMusic(64); // 50% du volume
+//     return 0;
+// }
 
-/*
+
 int music_button_play(Mix_Chunk *sound){
     if (sound == NULL) return -1;
     
@@ -61,4 +61,3 @@ int music_button_play(Mix_Chunk *sound){
     Mix_Volume(channel, 64); // Applique le volume uniquement au canal utilisé
     return 0;
 }
-*/

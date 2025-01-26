@@ -21,4 +21,5 @@
 - ***20-01*** : J'ai mis en place les échelle mais les serpents ne t’amène pas au bon endroit.
 - ***21-01*** : J'ai retravailler la fonction qui calcul la nouvelle position des joueurs.
 - ***22-01*** : J'ai fini de mettre en place toutes les échelles et les serpents. Le background change de couleur en fonction du joueur qui est en train de jouer. On peut jouer contre l'ordi comme si on joue a 2 joueurs.
-- ***23-01*** : J'ai **animé** le déplacement des joueurs !!! Reparation des fuites de mémoire.
+- ***23-01*** : J'ai **animé** le déplacement des joueurs !!! Reparation des fuites de mémoire. J'ai ajouté la musique de fond.
+- ***26-01*** : J'ai crée un fichier 'main_menu_button.c' qui permet de créer les boutons de menu. Ca ne fonctionne pas encore.
