@@ -25,33 +25,35 @@ int player_refresh_loop( int number_of_player,
                         SDL_Renderer *renderer,
                         SDL_Rect player_rects[],
                         SDL_Texture *array_texture_player[],
-                        SDL_Surface **picture,
                         const char *array_of_images_players[]) {
     // Charger et afficher les textures des joueurs
+    SDL_Surface *picture;
+    picture = NULL;
+    
     if(number_of_player > 1) {
         for (int i = 0; i < number_of_player; i++) {
-            *picture = IMG_Load(array_of_images_players[i]);
-            if (*picture == NULL) {
+            picture = IMG_Load(array_of_images_players[i]);
+            if (picture == NULL) {
                 printf("Erreur chargement image joueur %d: %s\n", i, IMG_GetError());
                 return -1;
             }
-            player_image_load(renderer, &array_texture_player[i], picture, player_rects[i]);
+            player_image_load(renderer, &array_texture_player[i], &picture, player_rects[i]);
         }
     }
     else if (number_of_player == 1) {
-        *picture = IMG_Load(array_of_images_players[0]);
-        if (*picture == NULL) {
+        picture = IMG_Load(array_of_images_players[0]);
+        if (picture == NULL) {
             printf("Erreur chargement image joueur: %s\n", IMG_GetError());
             return -1;
         }
-        player_image_load(renderer, &array_texture_player[0], picture, player_rects[0]);
+        player_image_load(renderer, &array_texture_player[0], &picture, player_rects[0]);
         
-        *picture = IMG_Load(array_of_images_players[4]);
-        if (*picture == NULL) {
+        picture = IMG_Load(array_of_images_players[4]);
+        if (picture == NULL) {
             printf("Erreur chargement image IA: %s\n", IMG_GetError());
             return -1;
         }
-        player_image_load(renderer, &array_texture_player[2], picture, player_rects[2]);
+        player_image_load(renderer, &array_texture_player[2], &picture, player_rects[2]);
     }
     
     return 0;

@@ -12,7 +12,6 @@ int player_refresh_loop(  int number_of_player,
                         SDL_Renderer *renderer,
                         SDL_Rect player_rects[],
                         SDL_Texture *array_texture_player[],
-                        SDL_Surface **picture,
                         const char *array_of_images_players[]
                         );
 

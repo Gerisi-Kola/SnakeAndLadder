@@ -1,15 +1,18 @@
-#include <stdio.h>
+.#include <stdio.h>
 #include <stdlib.h>
 #include <SDL.h>
 #include <SDL_image.h>
 
+/*
 int main_menu_button_image_load(SDL_Renderer *renderer, SDL_Texture **texture, SDL_Surface **picture, SDL_Rect rect_bg) {
     // Libérer la texture existante si elle existe
+    //SDL_Surface *picture = NULL;
+
     if (*texture != NULL) {
         SDL_DestroyTexture(*texture);
     }
-    *texture = SDL_CreateTextureFromSurface(renderer, *picture);
-    SDL_FreeSurface(*picture); // Libérer la surface après création de la texture
+    *texture = SDL_CreateTextureFromSurface(renderer, picture);
+    SDL_FreeSurface(picture); // Libérer la surface après création de la texture
     
     SDL_QueryTexture(*texture, NULL, NULL, &rect_bg.w, &rect_bg.h);
     
@@ -34,3 +37,4 @@ int main_menu_button_render(SDL_Texture *texture_button_play_1, SDL_Texture *tex
 
     return 0;
 }
+*/

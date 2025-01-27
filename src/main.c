@@ -10,30 +10,27 @@
 #include "event.h"
 #include "player.h"
 #include "move_algo.h"
-#include "music.h"
+//#include "music.h"
 
 int image_refresher_game(int number_of_player,
                     SDL_Renderer *renderer,
                     SDL_Texture **texture,
                     SDL_Texture **texture_button,
                     SDL_Rect rect_button,
-                    SDL_Rect rect_bg,
                     SDL_Rect player_rects[],
                     SDL_Texture *array_texture_player[],
-                    SDL_Surface **picture,
                     const char *array_of_images_players[]){
     
     // Créer et dessiner le bouton (rectangle jaune)
-    button_create(renderer, &rect_button, picture, texture_button);
+    button_create(renderer, &rect_button, texture_button);
     
     // Charger et afficher l'image (si nécessaire)
-    image_bg_load(renderer, texture, picture, rect_bg);
+    image_bg_load(renderer, texture);
     
     player_refresh_loop(number_of_player,
                         renderer,
                         player_rects,
                         array_texture_player,
-                        picture,
                         array_of_images_players);
     
     // Actualiser l'affichage pour que les dessins soient visibles
@@ -96,12 +93,11 @@ int main(int argc, char *argv[]) {
     SDL_Renderer *renderer = NULL;
     SDL_Texture *texture = NULL;
     SDL_Texture *texture_button = NULL;
-    SDL_Surface *picture = NULL;
     SDL_Event events;
-    Mix_Music *music_bg = NULL;
-    Mix_Music *music_button = NULL;
+    // Mix_Music *music_bg = NULL;
+    // Mix_Music *music_button = NULL;
     SDL_Rect rect_button = {BUTTON_LOCATION_X,BUTTON_LOCATION_Y,BUTTON_SIZE_W,BUTTON_SIZE_H};  // Position et taille du rectangle
-    SDL_Rect rect_bg = {0, 0, WINDOW_WIDTH, WINDOW_WIDTH};  // Dimensions de l'image
+    //SDL_Rect rect_bg = {0, 0, WINDOW_WIDTH, WINDOW_WIDTH};  // Dimensions de l'image
     SDL_Rect rect_transition_player[MOVE_STEP] = {0};
     //Player
     SDL_Rect player_rects[4] = {
@@ -153,16 +149,16 @@ int main(int argc, char *argv[]) {
                             &texture,
                             &texture_button,
                             rect_button,
-                            rect_bg,
                             player_rects,
                             array_texture_player,
-                            &picture,
                             array_of_images_players);
     
+    /*
     music_init();
     music_bg_load(&music_bg);
     music_button_load(&music_button);
     music_bg_play(music_bg);
+    */
     
     // Initialise les événements
     stop = event_create();
@@ -172,7 +168,7 @@ int main(int argc, char *argv[]) {
         
         //Effectue le déplacement du joueur concerner et rafraîchi l'affichage
         if (die_roll == 1){
-            music_button_play(music_button);
+            //music_button_play(music_button);
             
             actual_player = turn % number_of_player;
         if (actual_player == 3
@@ -209,10 +205,8 @@ int main(int argc, char *argv[]) {
                             &texture,
                             &texture_button,
                             rect_button,
-                            rect_bg,
                             player_rects,
                             array_texture_player,
-                            &picture,
                             array_of_images_players);
                 SDL_Delay(DELAY_MOVE_MAX/MOVE_STEP);
             }
@@ -237,10 +231,8 @@ int main(int argc, char *argv[]) {
                             &texture,
                             &texture_button,
                             rect_button,
-                            rect_bg,
                             player_rects,
                             array_texture_player,
-                            &picture,
                             array_of_images_players);
                     SDL_Delay(((DELAY_MOVE_MAX/MOVE_STEP)*2)/3);
                 }

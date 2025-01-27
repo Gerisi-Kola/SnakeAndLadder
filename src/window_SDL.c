@@ -27,17 +27,19 @@ int renderer_refresh(SDL_Renderer *renderer) {
     return 0;
 }
 
-int button_create(SDL_Renderer *renderer, SDL_Rect *rect_button, SDL_Surface **picture, SDL_Texture **texture_button) {
+int button_create(SDL_Renderer *renderer, SDL_Rect *rect_button, SDL_Texture **texture_button) {
     // Créer la texture à partir de l'image
-    *picture = IMG_Load(FILE_BUTTON);
-    if(*picture == NULL) {
+    SDL_Surface *picture;
+    picture = IMG_Load(FILE_BUTTON);
+    
+    if(picture == NULL) {
         fprintf(stderr, "Erreur IMG_Load : %s\n", IMG_GetError());
         return -1;
     }
     
-    *texture_button = SDL_CreateTextureFromSurface(renderer, *picture);
-    SDL_FreeSurface(*picture); // Libérer la surface après création de la texture
-    *picture = NULL;
+    *texture_button = SDL_CreateTextureFromSurface(renderer, picture);
+    SDL_FreeSurface(picture); // Libérer la surface après création de la texture
+    picture = NULL;
     
     if(*texture_button == NULL) {
         fprintf(stderr, "Erreur SDL_CreateTextureFromSurface : %s\n", SDL_GetError());
@@ -49,16 +51,20 @@ int button_create(SDL_Renderer *renderer, SDL_Rect *rect_button, SDL_Surface **p
     return 0;
 }
 
-int image_bg_load(SDL_Renderer *renderer, SDL_Texture **texture, SDL_Surface **picture, SDL_Rect rect_bg) {
-    *picture = IMG_Load(FILE_BG);
-    if(*picture == NULL) {
+int image_bg_load(SDL_Renderer *renderer, SDL_Texture **texture) {
+    SDL_Surface *picture;
+    picture = IMG_Load(FILE_BG);
+    SDL_Rect rect_bg = {0, 0, WINDOW_WIDTH, WINDOW_WIDTH};  // Dimensions de l'image
+    
+    
+    if(picture == NULL) {
         fprintf(stderr, "Erreur IMG_Load : %s\n", IMG_GetError());
         return -1;
     }
     
-    *texture = SDL_CreateTextureFromSurface(renderer, *picture);
-    SDL_FreeSurface(*picture); // Libérer la surface après création de la texture
-    *picture = NULL;
+    *texture = SDL_CreateTextureFromSurface(renderer, picture);
+    SDL_FreeSurface(picture); // Libérer la surface après création de la texture
+    picture = NULL;
     
     if(*texture == NULL) {
         fprintf(stderr, "Erreur SDL_CreateTextureFromSurface : %s\n", SDL_GetError());
