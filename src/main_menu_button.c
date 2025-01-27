@@ -8,7 +8,7 @@
 int main_menu_button_image_load(SDL_Renderer *renderer, SDL_Texture **texture, SDL_Surface **picture, SDL_Rect rect_bg) {
     // Libérer la texture existante si elle existe
     //SDL_Surface *picture = NULL;
-
+    
     if (*texture != NULL) {
         SDL_DestroyTexture(*texture);
     }
@@ -21,6 +21,10 @@ int main_menu_button_image_load(SDL_Renderer *renderer, SDL_Texture **texture, S
     SDL_RenderCopy(renderer, *texture, NULL, &rect_bg);  // Afficher la texture dans la fenêtre
     return 0;
 }
+
+
+
+
 
 int main_menu_button_init(SDL_Texture *texture_button[], SDL_Renderer *renderer){
     printf("init button\n");
@@ -52,6 +56,6 @@ int main_menu_button_init(SDL_Texture *texture_button[], SDL_Renderer *renderer)
 }
 
 int main_menu_button_render(SDL_Texture *texture_button_play_1, SDL_Texture *texture_button_play_2, SDL_Texture *texture_button_play_3, SDL_Texture *texture_button_play_4, SDL_Renderer *renderer){
-
+    
     return 0;
 }

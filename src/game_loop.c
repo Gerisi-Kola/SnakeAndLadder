@@ -1,3 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <SDL.h>
+#include <SDL_mixer.h>
+#include "window_SDL.h"
+#include "constant.h"
+#include "event.h"
+#include "player.h"
+#include "move_algo.h"
+#include "music.h"
+#include "main_menu_button.h"
+
 int image_refresher_game(int number_of_player,
                     SDL_Renderer *renderer,
                     SDL_Texture **texture,
