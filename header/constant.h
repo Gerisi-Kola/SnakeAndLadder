@@ -49,5 +49,10 @@
 #define BUTTON_SIZE_H        ((WINDOW_HEIGHT-WINDOW_WIDTH)/2)
 #define BUTTON_SIZE_W        (WINDOW_WIDTH/2)
 
+#define BUTTON_MENU_PLAYER1_Y  (WINDOW_HEIGHT/5)           // 120
+#define BUTTON_MENU_PLAYER2_Y  (WINDOW_HEIGHT/5*2)         // 240
+#define BUTTON_MENU_PLAYER3_Y  (WINDOW_HEIGHT/5*3)         // 360
+#define BUTTON_MENU_PLAYER4_Y  (WINDOW_HEIGHT/5*4)         // 480
+
 
 #endif

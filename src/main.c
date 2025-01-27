@@ -10,7 +10,8 @@
 #include "event.h"
 #include "player.h"
 #include "move_algo.h"
-//#include "music.h"
+#include "music.h"
+#include "main_menu_button.h"
 
 int image_refresher_game(int number_of_player,
                     SDL_Renderer *renderer,
@@ -21,11 +22,13 @@ int image_refresher_game(int number_of_player,
                     SDL_Texture *array_texture_player[],
                     const char *array_of_images_players[]){
     
+    SDL_RenderClear(renderer);
+    
     // Créer et dessiner le bouton (rectangle jaune)
     button_create(renderer, &rect_button, texture_button);
     
     // Charger et afficher l'image (si nécessaire)
-    image_bg_load(renderer, texture);
+    //image_bg_load(renderer, texture);
     
     player_refresh_loop(number_of_player,
                         renderer,
@@ -93,6 +96,7 @@ int main(int argc, char *argv[]) {
     SDL_Renderer *renderer = NULL;
     SDL_Texture *texture = NULL;
     SDL_Texture *texture_button = NULL;
+    SDL_Texture *texture_button_menu[4] = {NULL,NULL,NULL,NULL};
     SDL_Event events;
     // Mix_Music *music_bg = NULL;
     // Mix_Music *music_button = NULL;
@@ -143,6 +147,7 @@ int main(int argc, char *argv[]) {
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderClear(renderer);
     
+    /*
     image_refresher_game(
                             number_of_player,
                             renderer,
@@ -152,6 +157,7 @@ int main(int argc, char *argv[]) {
                             player_rects,
                             array_texture_player,
                             array_of_images_players);
+    */
     
     /*
     music_init();
@@ -160,21 +166,30 @@ int main(int argc, char *argv[]) {
     music_bg_play(music_bg);
     */
     
+    
+    
     // Initialise les événements
     stop = event_create();
     while (stop == 0){
         
         die_roll = button_check(&stop, &events);
         
+        // SDL_SetRenderDrawColor(renderer, 0,0,0, 255);
+        // SDL_RenderClear(renderer);
+        // SDL_SetRenderDrawColor(renderer, 255,255,255, 255);
+        
+        // main_menu_button_init(texture_button_menu, renderer);
+        // SDL_Delay(500);
+        
+        
         //Effectue le déplacement du joueur concerner et rafraîchi l'affichage
         if (die_roll == 1){
             //music_button_play(music_button);
             
             actual_player = turn % number_of_player;
-        if (actual_player == 3
+            if (actual_player == 3
             || (number_of_player == 2 && actual_player == 1)
-            || (number_of_player == 3 && actual_player == 2)
-            ){
+            || (number_of_player == 3 && actual_player == 2)){
                 SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Rouge
             }
             else if (actual_player == 0){
@@ -211,6 +226,8 @@ int main(int argc, char *argv[]) {
                 SDL_Delay(DELAY_MOVE_MAX/MOVE_STEP);
             }
             
+            //main_menu_button_init(texture_button_menu, renderer);
+            
             renderer_refresh(renderer);
             
             int area_table = check_snake_and_ladder(area, players_pos, turn, number_of_player);
@@ -242,6 +259,7 @@ int main(int argc, char *argv[]) {
         turn ++;
         
         }
+        
         SDL_Delay(200);
     }
     

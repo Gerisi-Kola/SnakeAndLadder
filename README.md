@@ -23,3 +23,4 @@
 - ***22-01*** : J'ai fini de mettre en place toutes les échelles et les serpents. Le background change de couleur en fonction du joueur qui est en train de jouer. On peut jouer contre l'ordi comme si on joue a 2 joueurs.
 - ***23-01*** : J'ai **animé** le déplacement des joueurs !!! Reparation des fuites de mémoire. J'ai ajouté la musique de fond.
 - ***26-01*** : J'ai crée un fichier 'main_menu_button.c' qui permet de créer les boutons de menu. Ca ne fonctionne pas encore. J'ai mis les SDL_Surface (picture) en local (elle sont initialiser à l'appel de la fonction).
+- ***27-01*** :J'ai fait que les 4 boutons du menu soit bien positionner et qu'il ai la bonne taille. J'ai crée un fichier 'game_loop.c' qui permet de faire le déplacement des joueurs.
