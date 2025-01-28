@@ -41,6 +41,7 @@
 
 #define FILE_MUSIC_BG        "music/dreams.ogg"
 #define FILE_MUSIC_BUTTON    "music/iphone_son_de_touche.ogg"
+#define FILE_MUSIC_WIN       "music/violin-win.ogg"
 
 #define SIZE_PLAYER          ((WINDOW_WIDTH)/10)
 #define BUTTON_LOCATION_Y    (WINDOW_WIDTH + (WINDOW_HEIGHT-WINDOW_WIDTH)/4)

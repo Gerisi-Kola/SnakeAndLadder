@@ -38,8 +38,8 @@ int main(int argc, char *argv[]) {
     SDL_Texture* array_texture_player[4] = {NULL,NULL,NULL,NULL};
     
     SDL_Event events;
-    // Mix_Music *music_bg = NULL;
-    // Mix_Music *music_button = NULL;
+    Mix_Music *music_bg = NULL;
+    Mix_Chunk *music_button = NULL;
     SDL_Rect rect_button = {BUTTON_LOCATION_X,BUTTON_LOCATION_Y,BUTTON_SIZE_W,BUTTON_SIZE_H};  // Position et taille du rectangle
     SDL_Rect rect_transition_player[MOVE_STEP] = {0};
     SDL_Rect player_rects[4] = {
@@ -49,9 +49,6 @@ int main(int argc, char *argv[]) {
             {POS_X*4,  POS_Y, 40, 40}  // Player 4
             };
     char *array_of_images_players[4] = {NULL,NULL,NULL,NULL};
-    
-    //Vérifier le nombre de joueur et de charger les images des joueurs
-    //check_number_of_player(&number_of_player,array_of_images_players, &ia_player);
     
     area_creator(area);
     
@@ -66,12 +63,12 @@ int main(int argc, char *argv[]) {
     
     main_menu_button_init(texture_button_menu, renderer);
     
-    /*
+    
     music_init();
     music_bg_load(&music_bg);
     music_button_load(&music_button);
     music_bg_play(music_bg);
-    */
+    
     
     
     // Initialise les événements
@@ -81,6 +78,7 @@ int main(int argc, char *argv[]) {
         
         //Effectue le déplacement du joueur concerner et rafraîchi l'affichage
         if (click == 1 && state_game == 1 && state_menu == 0){
+            music_button_play(music_button); // Joue le son du bouton
             game_main_loop(number_of_player,
                             renderer,
                             &texture,
@@ -126,6 +124,7 @@ int main(int argc, char *argv[]) {
         
         //Change le nombre de joueur et charge les images des joueurs
         else if (click > 0 && state_menu == 1 && state_game == 1){
+            music_button_play(music_button); // Joue le son du bouton
             SDL_Delay(200);
             number_of_player = click;
             click = 0;

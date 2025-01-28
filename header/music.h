@@ -6,8 +6,8 @@
 
 int music_init();
 int music_bg_load(Mix_Music **music);
-int music_button_load(Mix_Music **music);
+int music_button_load(Mix_Chunk **music);
 int music_bg_play(Mix_Music *music);
-int music_button_play(Mix_Music *music);
+int music_button_play(Mix_Chunk *music);
 
 #endif  

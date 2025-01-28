@@ -27,8 +27,8 @@ int music_bg_load(Mix_Music **music){
     return 0;
 }
 
-int music_button_load(Mix_Music **music){
-    *music = Mix_LoadMUS(FILE_MUSIC_BUTTON);
+int music_button_load(Mix_Chunk **music){
+    *music = Mix_LoadWAV(FILE_MUSIC_BUTTON);
     if (*music == NULL) {
         printf("Erreur chargement musique: %s\n", Mix_GetError());
         return -1;
