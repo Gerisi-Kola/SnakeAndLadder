@@ -95,10 +95,10 @@ int player_animation(int actual_player, SDL_Rect player_rects[], SDL_Rect rect_o
 
 
 
-int player_move(int actual_player, int roll_result, int players_pos[], SDL_Rect player_rects[], SDL_Rect rect_transition_player[]){    
+int player_move(int actual_player, int roll_result, int players_pos[], SDL_Rect player_rects[], SDL_Rect rect_transition_player[], int *win){    
     SDL_Rect rect_old_player = player_rects[actual_player];
     
-    calcul_new_pos(actual_player, players_pos, player_rects, roll_result);
+    calcul_new_pos(actual_player, players_pos, player_rects, roll_result, win);
     
     player_animation(actual_player, player_rects, rect_old_player, rect_transition_player);
     

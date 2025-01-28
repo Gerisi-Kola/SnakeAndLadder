@@ -7,7 +7,8 @@ int roll_die_number(int *previous_result);
 int calcul_new_pos( int i,
                     int players_pos[],
                     SDL_Rect player_rects[],
-                    int roll_num
+                    int roll_num,
+                    int *win
                     );
 
 #endif

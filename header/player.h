@@ -24,7 +24,8 @@ int player_move(int actual_player,
                 int roll_result,
                 int players_pos[],
                 SDL_Rect player_rects[],
-                SDL_Rect rect_transition_player[]
+                SDL_Rect rect_transition_player[],
+                int *win
                 );
 
 #endif

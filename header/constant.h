@@ -14,7 +14,7 @@
 #define MAX_CASE             99
 
 #define MOVE_STEP            20
-#define DELAY_MOVE_MAX       500
+#define DELAY_MOVE_MAX       00
 
 
 #define FILE_BG              "image/Sans20titre.png" // 600x600 !!! Taille importante

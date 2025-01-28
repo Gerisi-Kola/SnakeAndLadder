@@ -41,7 +41,8 @@ int game_main_loop( int number_of_player,
                     int *roll_result,
                     int players_pos[],
                     int area[],
-                    char *array_of_images_players[]
+                    char *array_of_images_players[],
+                    int *win
 );
 
 #endif

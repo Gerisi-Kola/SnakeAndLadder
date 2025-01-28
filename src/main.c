@@ -2,7 +2,6 @@
 //gcc -Wall -Wextra .\src\*.c -o bin/prog -I include -I header -L lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include "window_SDL.h"
@@ -25,9 +24,10 @@ int main(int argc, char *argv[]) {
     int actual_player = 0;
     int number_of_player = 0;
     int click = 0;
+    int win = 0;
     int roll_result = SEED_2;
     int turn = 0;
-    int players_pos[4] = {0,0,0,0};
+    int players_pos[4] = {90,90,90,90};
     int area[100] = {0};
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
@@ -40,6 +40,7 @@ int main(int argc, char *argv[]) {
     SDL_Event events;
     Mix_Music *music_bg = NULL;
     Mix_Chunk *music_button = NULL;
+    Mix_Chunk *music_win = NULL;
     SDL_Rect rect_button = {BUTTON_LOCATION_X,BUTTON_LOCATION_Y,BUTTON_SIZE_W,BUTTON_SIZE_H};  // Position et taille du rectangle
     SDL_Rect rect_transition_player[MOVE_STEP] = {0};
     SDL_Rect player_rects[4] = {
@@ -63,12 +64,7 @@ int main(int argc, char *argv[]) {
     
     main_menu_button_init(texture_button_menu, renderer);
     
-    
-    music_init();
-    music_bg_load(&music_bg);
-    music_button_load(&music_button);
-    music_bg_play(music_bg);
-    
+    start_music_bg(&music_bg, &music_button);
     
     
     // Initialise les événements
@@ -92,11 +88,25 @@ int main(int argc, char *argv[]) {
                             &roll_result,
                             players_pos,
                             area,
-                            array_of_images_players
+                            array_of_images_players,
+                            &win
             );
             turn ++;
+            
+            
+            if (win > 0){
+                printf("Player %d win\n", win);
+                state_menu = 0;
+                state_game = 0;
+                win = 0;
+                start_music_win(&music_win);
+                
+                
+                
+            }
+            
             //Si le joueur est une IA, on fait jouer l'IA
-            if (ia_player == 1){
+            if (ia_player == 1 && win == 0){
                 SDL_Delay(750);
                 game_main_loop(number_of_player,
                             renderer,
@@ -111,16 +121,23 @@ int main(int argc, char *argv[]) {
                             &roll_result,
                             players_pos,
                             area,
-                            array_of_images_players
+                            array_of_images_players,
+                            &win
                 );
                 turn ++;
+            
             }
         }
+        
+        
         
         //Affiche le menu de sélection du nombre de joueur
         else if (click == 1 && state_menu == 1 && state_game == 0){  
             main_menu_button_init(texture_button_menu, renderer);
         }
+        
+        
+        
         
         //Change le nombre de joueur et charge les images des joueurs
         else if (click > 0 && state_menu == 1 && state_game == 1){
@@ -146,6 +163,7 @@ int main(int argc, char *argv[]) {
     
     // Nettoyage
     SDL_QuitSubSystem(SDL_INIT_EVENTS);
+    music_clear(&music_bg, &music_button, &music_win);
     destroy_window(window, renderer, texture);
     
     return 0;

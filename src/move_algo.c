@@ -32,10 +32,12 @@ int roll_die_number(int *previous_result){
 }
 
 
-int calcul_new_pos(int actual_player, int players_pos[], SDL_Rect player_rects[], int roll_num){
+int calcul_new_pos(int actual_player, int players_pos[], SDL_Rect player_rects[], int roll_num, int *win){
     int pos = players_pos[actual_player] + roll_num;
     if (pos >= MAX_CASE){
         pos = MAX_CASE;
+        *win = actual_player + 1;
+        printf("Player %d win\n", actual_player);
     }
     players_pos[actual_player] = pos;
     
