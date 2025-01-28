@@ -37,21 +37,27 @@ int main_menu_button_init(SDL_Texture *texture_button[], SDL_Renderer *renderer)
             {BUTTON_LOCATION_X,  BUTTON_MENU_PLAYER4_Y, BUTTON_SIZE_W, BUTTON_SIZE_H}  // Player 4
             };
     
+    char *array_of_images_button[] = {
+        FILE_BUTTON_1_PLAYER,
+        FILE_BUTTON_2_PLAYER,
+        FILE_BUTTON_3_PLAYER,
+        FILE_BUTTON_4_PLAYER
+    };
     
     for (int i = 0; i < 4; i++){
-        picture = IMG_Load(FILE_BUTTON_PLAY_1); //array_of_images_button[i]);
+        picture = IMG_Load(array_of_images_button[i]); //array_of_images_button[i]);
         if (picture == NULL) {
                 printf("Erreur chargement image joueur %d: %s\n", i, IMG_GetError());
                 return -1;
             }
         main_menu_button_image_load(renderer, &texture_button[i], &picture, rect_button[i]);
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderDrawRect(renderer, &rect_button[i]);
-        SDL_RenderFillRect(renderer, &rect_button[i]); 
+        //SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        //SDL_RenderDrawRect(renderer, &rect_button[i]);
+        //SDL_RenderFillRect(renderer, &rect_button[i]); 
         
     }
     SDL_RenderPresent(renderer);
-    SDL_SetRenderDrawColor(renderer, 0,0,0, 255);
+    //SDL_SetRenderDrawColor(renderer, 0,0,0, 255);
     return 0;
 }
 

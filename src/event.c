@@ -27,16 +27,35 @@ int button_check(int *stop, SDL_Event *events, int *state_game, int *state_menu)
                     return 1;
                 }
             }
+            
             else if (*state_menu == 1){
                 if (    events->button.x >= BUTTON_LOCATION_X
                     &&  events->button.x <= BUTTON_LOCATION_X+BUTTON_SIZE_W
-                    &&  events->button.y >= BUTTON_LOCATION_Y
-                    &&  events->button.y <= BUTTON_LOCATION_Y+BUTTON_SIZE_H){
+                    &&  events->button.y >= BUTTON_MENU_PLAYER1_Y
+                    &&  events->button.y <= BUTTON_MENU_PLAYER1_Y+BUTTON_SIZE_H){
                     *state_game = 1;
-                    *state_menu = 0;
-                    
-                    //check_number_of_player(&number_of_player, array_of_images_players);
                     return 1;
+                }
+                else if (    events->button.x >= BUTTON_LOCATION_X
+                    &&  events->button.x <= BUTTON_LOCATION_X+BUTTON_SIZE_W
+                    &&  events->button.y >= BUTTON_MENU_PLAYER2_Y
+                    &&  events->button.y <= BUTTON_MENU_PLAYER2_Y+BUTTON_SIZE_H){
+                    *state_game = 1;
+                    return 2;
+                }
+                else if (    events->button.x >= BUTTON_LOCATION_X
+                    &&  events->button.x <= BUTTON_LOCATION_X+BUTTON_SIZE_W
+                    &&  events->button.y >= BUTTON_MENU_PLAYER3_Y
+                    &&  events->button.y <= BUTTON_MENU_PLAYER3_Y+BUTTON_SIZE_H){
+                    *state_game = 1;
+                    return 3;
+                }
+                else if (    events->button.x >= BUTTON_LOCATION_X
+                    &&  events->button.x <= BUTTON_LOCATION_X+BUTTON_SIZE_W
+                    &&  events->button.y >= BUTTON_MENU_PLAYER4_Y
+                    &&  events->button.y <= BUTTON_MENU_PLAYER4_Y+BUTTON_SIZE_H){
+                    *state_game = 1;
+                    return 4;
                 }
             }
         }

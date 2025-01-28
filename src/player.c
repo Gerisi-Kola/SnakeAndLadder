@@ -7,11 +7,11 @@
 #include "move_algo.h"
 
 //Fonction qui permet de vérifier le nombre de joueur et de charger les images des joueurs
-int check_number_of_player(int *number_of_player, char **array_of_images_players){
+int check_number_of_player(int *number_of_player, char **array_of_images_players, int *ia_player){
     if (*number_of_player == 1) {
         array_of_images_players[0] = FILE_PLAYER;
         array_of_images_players[1] = FILE_IA;
-        
+        *ia_player = 1;
         *number_of_player = 2;
     }
     else {

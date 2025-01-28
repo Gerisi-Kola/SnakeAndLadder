@@ -3,7 +3,8 @@
 #include <SDL.h>
 
 int check_number_of_player( int *number_of_player,
-                            char **array_of_images_players
+                            char **array_of_images_players,
+                            int *ia_player
 );
 
 int player_image_load(  SDL_Renderer *renderer,

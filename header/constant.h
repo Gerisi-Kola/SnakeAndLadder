@@ -34,10 +34,10 @@
 #define FILE_PLAYER4         "image/j4_manuscrit.png"
 #define FILE_IA              "image/ia_manuscrit.png"
 
-#define FILE_BUTTON_PLAY_1   "image/go_image.png" //"image/play_1.png"
-#define FILE_BUTTON_PLAY_2   "image/go_image.png" //"image/play_2.png"
-#define FILE_BUTTON_PLAY_3   "image/go_image.png" //"image/play_3.png"
-#define FILE_BUTTON_PLAY_4   "image/go_image.png" //"image/play_4.png"
+#define FILE_BUTTON_1_PLAYER   "image/go_image.png" //"image/play_1.png"
+#define FILE_BUTTON_2_PLAYER   "image/go_image.png" //"image/play_2.png"
+#define FILE_BUTTON_3_PLAYER   "image/go_image.png" //"image/play_3.png"
+#define FILE_BUTTON_4_PLAYER   "image/go_image.png" //"image/play_4.png"
 
 #define FILE_MUSIC_BG        "music/dreams.ogg"
 #define FILE_MUSIC_BUTTON    "music/iphone_son_de_touche.ogg"
@@ -49,10 +49,10 @@
 #define BUTTON_SIZE_H        ((WINDOW_HEIGHT-WINDOW_WIDTH)/2)
 #define BUTTON_SIZE_W        (WINDOW_WIDTH/2)
 
-#define BUTTON_MENU_PLAYER1_Y  (WINDOW_HEIGHT/5)           // 120
-#define BUTTON_MENU_PLAYER2_Y  (WINDOW_HEIGHT/5*2)         // 240
-#define BUTTON_MENU_PLAYER3_Y  (WINDOW_HEIGHT/5*3)         // 360
-#define BUTTON_MENU_PLAYER4_Y  (WINDOW_HEIGHT/5*4)         // 480
+#define BUTTON_MENU_PLAYER1_Y  (WINDOW_HEIGHT/5)-BUTTON_SIZE_H/2          // 120
+#define BUTTON_MENU_PLAYER2_Y  (WINDOW_HEIGHT/5*2)-BUTTON_SIZE_H/2         // 240
+#define BUTTON_MENU_PLAYER3_Y  (WINDOW_HEIGHT/5*3)-BUTTON_SIZE_H/2         // 360
+#define BUTTON_MENU_PLAYER4_Y  (WINDOW_HEIGHT/5*4)-BUTTON_SIZE_H/2         // 480
 
 
 #endif
