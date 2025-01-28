@@ -15,7 +15,6 @@ int image_refresher_game(int number_of_player,
                     SDL_Renderer *renderer,
                     SDL_Texture **texture,
                     SDL_Texture **texture_button,
-                    SDL_Rect rect_button,
                     SDL_Rect player_rects[],
                     SDL_Texture *array_texture_player[],
                     char *array_of_images_players[]){
@@ -23,7 +22,7 @@ int image_refresher_game(int number_of_player,
     SDL_RenderClear(renderer);
     
     // Créer et dessiner le bouton (rectangle jaune)
-    button_create(renderer, &rect_button, texture_button);
+    button_create(renderer, texture_button);
     
     // Charger et afficher l'image (si nécessaire)
     image_bg_load(renderer, texture);
@@ -91,7 +90,6 @@ int game_main_loop(int number_of_player,
                     SDL_Renderer *renderer,
                     SDL_Texture **texture,
                     SDL_Texture **texture_button,
-                    SDL_Rect rect_button,
                     SDL_Rect player_rects[],
                     SDL_Texture *array_texture_player[],
                     SDL_Rect rect_transition_player[],
@@ -135,7 +133,6 @@ int game_main_loop(int number_of_player,
                     renderer,
                     texture,
                     texture_button,
-                    rect_button,
                     player_rects,
                     array_texture_player,
                     array_of_images_players);
@@ -162,7 +159,6 @@ int game_main_loop(int number_of_player,
                     renderer,
                     texture,
                     texture_button,
-                    rect_button,
                     player_rects,
                     array_texture_player,
                     array_of_images_players);

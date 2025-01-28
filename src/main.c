@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
     Mix_Music *music_bg = NULL;
     Mix_Chunk *music_button = NULL;
     Mix_Chunk *music_win = NULL;
-    SDL_Rect rect_button = {BUTTON_LOCATION_X,BUTTON_LOCATION_Y,BUTTON_SIZE_W,BUTTON_SIZE_H};  // Position et taille du rectangle
+    //SDL_Rect rect_button = {BUTTON_LOCATION_X,BUTTON_LOCATION_Y,BUTTON_SIZE_W,BUTTON_SIZE_H};  // Position et taille du rectangle
     SDL_Rect rect_transition_player[MOVE_STEP] = {0};
     SDL_Rect player_rects[4] = {
             {POS_X,  POS_Y, 40, 40},  // Player 1
@@ -79,7 +79,6 @@ int main(int argc, char *argv[]) {
                             renderer,
                             &texture,
                             &texture_button,
-                            rect_button,
                             player_rects,
                             array_texture_player,
                             rect_transition_player,
@@ -112,7 +111,6 @@ int main(int argc, char *argv[]) {
                             renderer,
                             &texture,
                             &texture_button,
-                            rect_button,
                             player_rects,
                             array_texture_player,
                             rect_transition_player,
@@ -152,7 +150,6 @@ int main(int argc, char *argv[]) {
                             renderer,
                             &texture,
                             &texture_button,
-                            rect_button,
                             player_rects,
                             array_texture_player,
                             array_of_images_players);

@@ -27,10 +27,18 @@ int renderer_refresh(SDL_Renderer *renderer) {
     return 0;
 }
 
-int button_create(SDL_Renderer *renderer, SDL_Rect *rect_button, SDL_Texture **texture_button) {
+int button_create(SDL_Renderer *renderer, SDL_Texture **texture_button) {
+    // Si la texture existe déjà, on fait juste le rendu
+    SDL_Rect rect_button = {BUTTON_LOCATION_X,BUTTON_LOCATION_Y,BUTTON_SIZE_W,BUTTON_SIZE_H};
+    
+    if (*texture_button != NULL) {
+        SDL_QueryTexture(*texture_button, NULL, NULL, &rect_button.w, &rect_button.h);
+        SDL_RenderCopy(renderer, *texture_button, NULL, &rect_button);
+        return 0;
+    }
+    
     // Créer la texture à partir de l'image
-    SDL_Surface *picture;
-    picture = IMG_Load(FILE_BUTTON);
+    SDL_Surface *picture = IMG_Load(FILE_BUTTON);
     
     if(picture == NULL) {
         fprintf(stderr, "Erreur IMG_Load : %s\n", IMG_GetError());
@@ -46,16 +54,22 @@ int button_create(SDL_Renderer *renderer, SDL_Rect *rect_button, SDL_Texture **t
         return -1;
     }
     
-    SDL_QueryTexture(*texture_button, NULL, NULL, &rect_button->w, &rect_button->h);
-    SDL_RenderCopy(renderer, *texture_button, NULL, rect_button);
+    SDL_QueryTexture(*texture_button, NULL, NULL, &rect_button.w, &rect_button.h);
+    SDL_RenderCopy(renderer, *texture_button, NULL, &rect_button);
     return 0;
 }
 
 int image_bg_load(SDL_Renderer *renderer, SDL_Texture **texture) {
-    SDL_Surface *picture;
-    picture = IMG_Load(FILE_BG);
+    // Si la texture existe déjà, on fait juste le rendu
     SDL_Rect rect_bg = {0, 0, WINDOW_WIDTH, WINDOW_WIDTH};  // Dimensions de l'image
     
+    if (*texture != NULL) {
+        SDL_QueryTexture(*texture, NULL, NULL, &rect_bg.w, &rect_bg.h);
+        SDL_RenderCopy(renderer, *texture, NULL, &rect_bg);
+        return 0;
+    }
+    
+    SDL_Surface *picture = IMG_Load(FILE_BG);
     
     if(picture == NULL) {
         fprintf(stderr, "Erreur IMG_Load : %s\n", IMG_GetError());

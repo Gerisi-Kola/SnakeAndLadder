@@ -24,4 +24,4 @@
 - ***23-01*** : J'ai **animé** le déplacement des joueurs !!! Reparation des fuites de mémoire. J'ai ajouté la musique de fond.
 - ***26-01*** : J'ai crée un fichier 'main_menu_button.c' qui permet de créer les boutons de menu. Ca ne fonctionne pas encore. J'ai mis les SDL_Surface (picture) en local (elle sont initialiser à l'appel de la fonction).
 - ***27-01*** : J'ai fait que les 4 boutons du menu soit bien positionner et qu'il ai la bonne taille. J'ai mis la gestion de l'affichage du jeux dans un fichier 'game_loop.c'. Le programme démarre sur le main menu.
-- ***28-01*** : Les boutons du menu fonctionne. L'IA joue correctement. La musique de fond et le son des boutons fonctionne. J'ai mis en place la musique de victoire qui se déclenche au bon moment.
+- ***28-01*** : Les boutons du menu fonctionne. L'IA joue correctement. La musique de fond et le son des boutons fonctionne. J'ai mis en place la musique de victoire qui se déclenche au bon moment. Je réutilise les textures au lieu de les recréer à chaque fois.

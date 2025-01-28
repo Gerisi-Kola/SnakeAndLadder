@@ -37,7 +37,6 @@ int calcul_new_pos(int actual_player, int players_pos[], SDL_Rect player_rects[]
     if (pos >= MAX_CASE){
         pos = MAX_CASE;
         *win = actual_player + 1;
-        printf("Player %d win\n", actual_player);
     }
     players_pos[actual_player] = pos;
     

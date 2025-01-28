@@ -29,15 +29,17 @@ int check_number_of_player(int *number_of_player, char **array_of_images_players
 int player_image_load(SDL_Renderer *renderer, SDL_Texture **texture, SDL_Surface **picture, SDL_Rect rect_bg) {
     // Libérer la texture existante si elle existe
     if (*texture != NULL) {
-        SDL_DestroyTexture(*texture);
+        SDL_QueryTexture(*texture, NULL, NULL, &rect_bg.w, &rect_bg.h);
+        SDL_RenderCopy(renderer, *texture, NULL, &rect_bg);
+        return 0;
     }
+    
     *texture = SDL_CreateTextureFromSurface(renderer, *picture);
-    SDL_FreeSurface(*picture); // Libérer la surface après création de la texture
+    SDL_FreeSurface(*picture);
+    *picture = NULL;
     
     SDL_QueryTexture(*texture, NULL, NULL, &rect_bg.w, &rect_bg.h);
-    
-    // Afficher l'image
-    SDL_RenderCopy(renderer, *texture, NULL, &rect_bg);  // Afficher la texture dans la fenêtre
+    SDL_RenderCopy(renderer, *texture, NULL, &rect_bg);
     return 0;
 }
 

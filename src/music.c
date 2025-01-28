@@ -101,7 +101,9 @@ int start_music_bg(Mix_Music **music_bg, Mix_Chunk **music_button){
 
 
 int start_music_win(Mix_Chunk **music_win){
-    music_win_load(music_win);
+    if (*music_win == NULL) {
+        music_win_load(music_win);
+    }
     music_win_play(*music_win);
     //Mix_FreeChunk(*music_win);
     return 0;
