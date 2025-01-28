@@ -10,4 +10,4 @@ int music_button_load(Mix_Music **music);
 int music_bg_play(Mix_Music *music);
 int music_button_play(Mix_Music *music);
 
-#endif
+#endif  

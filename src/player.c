@@ -6,6 +6,27 @@
 #include "constant.h"
 #include "move_algo.h"
 
+//Fonction qui permet de vérifier le nombre de joueur et de charger les images des joueurs
+int check_number_of_player(int *number_of_player, char **array_of_images_players){
+    if (*number_of_player == 1) {
+        array_of_images_players[0] = FILE_PLAYER;
+        array_of_images_players[1] = FILE_IA;
+        
+        *number_of_player = 2;
+    }
+    else {
+        array_of_images_players[0] = FILE_PLAYER;
+        array_of_images_players[1] = FILE_PLAYER2;
+        array_of_images_players[2] = FILE_PLAYER3;
+        array_of_images_players[3] = FILE_PLAYER4;
+        array_of_images_players[4] = FILE_IA;
+    }
+    
+    return 0;
+}
+
+
+
 int player_image_load(SDL_Renderer *renderer, SDL_Texture **texture, SDL_Surface **picture, SDL_Rect rect_bg) {
     // Libérer la texture existante si elle existe
     if (*texture != NULL) {
@@ -21,11 +42,14 @@ int player_image_load(SDL_Renderer *renderer, SDL_Texture **texture, SDL_Surface
     return 0;
 }
 
+
+
+
 int player_refresh_loop( int number_of_player,
                         SDL_Renderer *renderer,
                         SDL_Rect player_rects[],
                         SDL_Texture *array_texture_player[],
-                        const char *array_of_images_players[]) {
+                        char *array_of_images_players[]) {
     // Charger et afficher les textures des joueurs
     SDL_Surface *picture;
     picture = NULL;
@@ -59,6 +83,9 @@ int player_refresh_loop( int number_of_player,
     return 0;
 }
 
+
+
+
 /*
 int player_refresh_loop( int number_of_player,
                         SDL_Renderer *renderer,
@@ -87,6 +114,9 @@ int player_refresh_loop( int number_of_player,
     return 0;
 }
 */
+
+
+
 
 int player_animation(int actual_player, SDL_Rect player_rects[], SDL_Rect rect_old_player, SDL_Rect rect_transition_player[]){
     //printf("player_old_rect.x = %d, player_old_rect.y = %d\n", rect_old_player.x, rect_old_player.y);
@@ -118,6 +148,9 @@ int player_animation(int actual_player, SDL_Rect player_rects[], SDL_Rect rect_o
     //player_rects[actual_player].y = rect_array_player[9].y;
     return 0;
 }
+
+
+
 
 int player_move(int actual_player, int roll_result, int players_pos[], SDL_Rect player_rects[], SDL_Rect rect_transition_player[]){
     //À qui le tour ?

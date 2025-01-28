@@ -19,9 +19,11 @@ int main(int argc, char *argv[]) {
     (void)argv; // Indique explicitement que tu n'utilises pas 'argv'
     
     int stop = 0;
+    int state_game = 0;
+    int state_menu = 1;
     int actual_player = 0;
-    int number_of_player = 3;
-    int die_roll = 0;
+    int number_of_player = 4;
+    int click = 0;
     int roll_result = SEED_2;
     int turn = 0;
     int players_pos[4] = {0,0,0,0};
@@ -47,28 +49,10 @@ int main(int argc, char *argv[]) {
     
     SDL_Texture* array_texture_player[4] = {NULL,NULL,NULL,NULL};
     
-    const char *array_of_images_players_4[] = {
-            FILE_PLAYER,
-            FILE_PLAYER2,
-            FILE_PLAYER3,
-            FILE_PLAYER4,
-            FILE_IA
-            };
+    char *array_of_images_players[4] = {NULL,NULL,NULL,NULL};
     
-    const char *array_of_images_players_2[] = {
-            FILE_PLAYER,
-            FILE_IA
-        };
-    
-    const char **array_of_images_players;
-    
-    if (number_of_player == 1){
-        array_of_images_players = array_of_images_players_2;
-        number_of_player = 2;
-    }
-    else{
-        array_of_images_players = array_of_images_players_4;
-    }
+    //Vérifier le nombre de joueur et de charger les images des joueurs
+    check_number_of_player(&number_of_player,array_of_images_players);
     
     area_creator(area);
     
@@ -82,6 +66,7 @@ int main(int argc, char *argv[]) {
     SDL_RenderClear(renderer);
     
     
+    /*
     image_refresher_game(
                             number_of_player,
                             renderer,
@@ -91,7 +76,9 @@ int main(int argc, char *argv[]) {
                             player_rects,
                             array_texture_player,
                             array_of_images_players);
+    */
     
+    main_menu_button_init(texture_button_menu, renderer);
     
     /*
     music_init();
@@ -106,18 +93,10 @@ int main(int argc, char *argv[]) {
     stop = event_create();
     while (stop == 0){
         
-        die_roll = button_check(&stop, &events);
-        
-        // SDL_SetRenderDrawColor(renderer, 0,0,0, 255);
-        // SDL_RenderClear(renderer);
-        // SDL_SetRenderDrawColor(renderer, 255,255,255, 255);
-        
-        // main_menu_button_init(texture_button_menu, renderer);
-        // SDL_Delay(500);
-        
+        click = button_check(&stop, &events, &state_game, &state_menu);
         
         //Effectue le déplacement du joueur concerner et rafraîchi l'affichage
-        if (die_roll == 1){
+        if (click == 1 && state_game == 1){
             game_main_loop(number_of_player,
                             renderer,
                             &texture,
@@ -131,10 +110,21 @@ int main(int argc, char *argv[]) {
                             &roll_result,
                             players_pos,
                             area,
-                            array_of_images_players);
-            
-            turn ++;
+                            array_of_images_players
+            );
+        turn ++;
         }
+        
+        //Affiche le menu de sélection du nombre de joueur
+        else if (click == 1 && state_menu == 1){
+            SDL_SetRenderDrawColor(renderer, 0,0,0, 255);
+            //SDL_RenderClear(renderer);
+            SDL_SetRenderDrawColor(renderer, 255,255,255, 255);
+            
+            main_menu_button_init(texture_button_menu, renderer);
+            //SDL_Delay(500);
+        }
+        
         
         SDL_Delay(200);
     }

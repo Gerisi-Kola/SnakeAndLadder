@@ -5,7 +5,7 @@
 #define WINDOW_WIDTH         600
 
 #define SEED                 199 //0x5f3759df //2151901553968352745
-#define SEED_2               7
+#define SEED_2               3
 
 #define POS_Y                550
 #define POS_X                4

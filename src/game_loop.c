@@ -18,7 +18,7 @@ int image_refresher_game(int number_of_player,
                     SDL_Rect rect_button,
                     SDL_Rect player_rects[],
                     SDL_Texture *array_texture_player[],
-                    const char *array_of_images_players[]){
+                    char *array_of_images_players[]){
     
     SDL_RenderClear(renderer);
     
@@ -77,7 +77,7 @@ int area_creator(int area[]){
 
 
 
-int check_snake_and_ladder(int area[],int players_pos[],int turn,int number_of_player){
+int check_snake_and_ladder(int area[], int players_pos[], int turn, int number_of_player){
     int actual_player = turn % number_of_player;
     int pos =  players_pos[actual_player];
     return area[pos];
@@ -99,7 +99,7 @@ int game_main_loop(int number_of_player,
                     int *roll_result,
                     int players_pos[],
                     int area[],
-                    const char *array_of_images_players[]){
+                    char *array_of_images_players[]){
     //music_button_play(music_button);
     
     actual_player = turn % number_of_player;
@@ -171,4 +171,5 @@ int game_main_loop(int number_of_player,
         
         renderer_refresh(renderer);
     }
+    return 0;
 }
