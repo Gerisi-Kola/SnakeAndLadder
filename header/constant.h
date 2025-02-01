@@ -34,10 +34,10 @@
 #define FILE_PLAYER4         "image/j4_manuscrit.png"
 #define FILE_IA              "image/ia_manuscrit.png"
 
-#define FILE_BUTTON_1_PLAYER   "image/go_image.png" //"image/play_1.png"
-#define FILE_BUTTON_2_PLAYER   "image/go_image.png" //"image/play_2.png"
-#define FILE_BUTTON_3_PLAYER   "image/go_image.png" //"image/play_3.png"
-#define FILE_BUTTON_4_PLAYER   "image/go_image.png" //"image/play_4.png"
+#define FILE_BUTTON_1_PLAYER   "image/player_1.png" //"image/play_1.png"
+#define FILE_BUTTON_2_PLAYER   "image/player_2.png" //"image/play_2.png"
+#define FILE_BUTTON_3_PLAYER   "image/player_3.png" //"image/play_3.png"
+#define FILE_BUTTON_4_PLAYER   "image/player_4.png" //"image/play_4.png"
 
 #define FILE_MUSIC_BG        "music/dreams.ogg"
 #define FILE_MUSIC_BUTTON    "music/iphone_son_de_touche.ogg"
